@@ -1,11 +1,18 @@
-# Welcome to your Jupyter Book
+# Introducción
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+¡Bienvenidas y bienvenidos al curso de Neurociencia Cognitiva y Computacional!
 
-Check out the content pages bundled with this sample book to see more.
+## Usando Google Colab
+
+Si tenés acceso a Google Colab, podés hacer clic en el botón "Colab" que aparece arriba de cada página para abrirlo en un entorno interactivo donde podés escribir y correr código.
+
+### Consejos para usar Colab
+
+Hacé una copia local en tu Drive: de lo contrario, los cambios que hagas (por ejemplo, notas que tomes, código que escribas, etc.) no se van a guardar. No edités el mismo colab directamente en grupo: a diferencia de Google Docs, la versión de una persona puede sobrescribir la de otra. Si dejás el navegador abierto, puede pisar cualquier cosa que haya hecho otra persona desde la última vez que cargaste la página.
+
+Para aprender lo básico de Colab, podés revisar este [cuaderno](https://colab.research.google.com/notebooks/intro.ipynb).
+
+## Contenido del curso
 
 ```{tableofcontents}
 ```
