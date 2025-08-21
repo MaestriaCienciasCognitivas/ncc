@@ -1,2 +1,4 @@
 .DS_Store
+.jupyter/
+.ipynb_checkpoints/
 book/_build
