@@ -2,7 +2,7 @@
 
 ## Teórico
 
-- [Link al teórico](https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/slides/s1-modelos-neuronas.pdf)
+- [Link al teórico](https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/slides/s2-modelos-neuronas.pdf)
 
 ## Lecturas recomendadas
 
