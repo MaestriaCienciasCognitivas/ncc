@@ -8,3 +8,6 @@ parts:
     chapters:
     - file: notebooks/Cuaderno1
     - file: notebooks/Cuaderno2
+  - caption: Modelos de neuronas
+    chapters:
+    - file: s2-modelos-neuronas
