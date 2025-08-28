@@ -17,7 +17,7 @@ Las obras derivadas pueden usar la licencia que sea más apropiada para su conte
 
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
-[cc-by-shield]: https://img.shields.io/badge/License-CC-BY-4.0-lightgrey.svg
+[cc-by-shield]: https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg
 
 [bsd-3]: https://opensource.org/licenses/BSD-3-Clause
 [bsd-3-shield]: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
