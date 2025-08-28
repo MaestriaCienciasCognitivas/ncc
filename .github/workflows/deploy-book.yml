@@ -5,8 +5,8 @@ on:
   push:
     branches:
     - main
-    paths:
-    - book/**
+    # paths:
+    # - book/**
 
 # This job installs dependencies, builds the book, and pushes it to `gh-pages`
 jobs:
@@ -52,6 +52,7 @@ jobs:
         path: "book/_build/html"
 
     # Deploy the book's HTML to GitHub Pages
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - name: Deploy with ghp-import
+      run: |
+        pip install ghp-import
+        ghp-import -n -p -f book/_build/html
