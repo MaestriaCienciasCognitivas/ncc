@@ -11,4 +11,5 @@ parts:
   - caption: Modelos de neuronas
     chapters:
     - file: s2-modelos-neuronas
-    - file: notebooks/W2_Practico1 
+    - file: notebooks/W2_Cuaderno3
+    - file: notebooks/W2_Practico1
