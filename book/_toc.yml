@@ -13,3 +13,6 @@ parts:
     - file: s2-modelos-neuronas
     - file: notebooks/W2_Cuaderno3
     - file: notebooks/W2_Practico1
+    - file: notebooks/W3_Practico2a
+    - file: notebooks/W3_Practico2b
+    - file: notebooks/W3_Practico2c
