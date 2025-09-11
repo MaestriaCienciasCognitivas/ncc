@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctico 3: Modelos de memorias matriciales &#8212; Neurociencia Cognitiva y Computacional</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"ffcd25cd73ad426aa93c029f9a1abe04": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "bb5806fd426340ffa25269cea74a401f": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_aa606cea820a4cb0a93f4ce3bcef431c", "IPY_MODEL_a98add7883af4881828dab90cbf20b95"], "layout": "IPY_MODEL_ffcd25cd73ad426aa93c029f9a1abe04", "tabbable": null, "tooltip": null}}, "2ef37984cfbd4d0590f3b9f73e2a9ff3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "fc0a30a1d778466ebb93ac1936f08f69": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "aa606cea820a4cb0a93f4ce3bcef431c": {"model_name": "FloatSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "FloatSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "FloatSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "r", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_2ef37984cfbd4d0590f3b9f73e2a9ff3", "max": 1.0, "min": 0.0, "orientation": "horizontal", "readout": true, "readout_format": ".2f", "step": 0.1, "style": "IPY_MODEL_fc0a30a1d778466ebb93ac1936f08f69", "tabbable": null, "tooltip": null, "value": 0.8}}, "59f9c40f20744d6b800a26a011fd84b1": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "a98add7883af4881828dab90cbf20b95": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_59f9c40f20744d6b800a26a011fd84b1", "msg_id": "", "outputs": [{"output_type": "display_data", "metadata": {}, "data": {"text/plain": "<Figure size 640x480 with 3 Axes>", "image/png": "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"}}], "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S4_Practico3';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Cuaderno 4: Regla de Oja" href="S4_Cuaderno4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Neurociencia Cognitiva y Computacional - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Neurociencia Cognitiva y Computacional - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../W2-modelos-neuronas.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S4-redes-neuronales.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Cuaderno4.html">Cuaderno 4: Regla de Oja</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Práctico 3: Modelos de memorias matriciales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/MaestriaCienciasCognitivas/ncc/blob/main/book/notebooks/S4_Practico3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc/issues/new?title=Issue%20on%20page%20%2Fnotebooks/S4_Practico3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/S4_Practico3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Práctico 3: Modelos de memorias matriciales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traspuesta">Traspuesta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-escalar">Producto escalar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuestra-primera-red-neuronal">Nuestra primera red neuronal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similitud-de-vectores">Similitud de vectores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-neuronal-2-0">Red neuronal 2.0</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="practico-3-modelos-de-memorias-matriciales">
+<h1>Práctico 3: Modelos de memorias matriciales<a class="headerlink" href="#practico-3-modelos-de-memorias-matriciales" title="Link to this heading">#</a></h1>
+<p>En este práctico, trataremos de hacer el salto conceptual de una neurona a redes de neuronas. Para ello, abordaremos principalmente el capítulo 3 de <em>Fundamentals of computational neuroscience</em> de Trappenberg.</p>
+<p><em>Nota: En el Cuaderno 2 vimos una introducción a Numpy y Matplotlib. En este práctico haremos una introducción aún mas breve, por lo que en caso de dudas, pueden fijarse en el Cuaderno 2.</em></p>
+<p>Comenzaremos, como siempre, importando las librerías que vamos a utilizar:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importamos NumPy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Para evitar imprimir números decimales muy largos, modificamos el formateador de Numpy:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Importamos SciPy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+
+<span class="c1"># Importamos Matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consideremos primero un vector <span class="math notranslate nohighlight">\(\pmb{a}\)</span> definido como:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a} = \begin{pmatrix} a_{1} \\ a_{2} \\ a_{3} \\ a_{4} \end{pmatrix}\)</span></p>
+<p>Decimos que este vector tiene 4 componentes <span class="math notranslate nohighlight">\(a_1\)</span>, <span class="math notranslate nohighlight">\(a_2\)</span>, <span class="math notranslate nohighlight">\(a_3\)</span> y <span class="math notranslate nohighlight">\(a_4\)</span>. Para trabajar con números en lugar de componentes abstractos, en esta breve introducción, vamos a comenzar definiendo cuatro vectores de entrada <span class="math notranslate nohighlight">\(\pmb{e}_i\)</span> de la siguiente forma:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{e}_1 = \begin{pmatrix} 0.5 \\ 0.5 \\ 0.5 \\ 0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_2 = \begin{pmatrix} 0.5 \\ -0.5 \\ 0.5 \\ -0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_3 = \begin{pmatrix} 0.5 \\ 0.5 \\ 0.5 \\ -0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_4 = \begin{pmatrix} 0.5 \\ -0.5 \\ -0.5 \\ 0.5 \end{pmatrix}\)</span></p>
+<p>En Python, y específicamente con Numpy, preferimos ver a los vectores como un caso especial de las matrices. Las matrices son colecciones de escalares o vectores. Hablamos de una matriz de <span class="math notranslate nohighlight">\(n \times m\)</span> donde <span class="math notranslate nohighlight">\(n\)</span> es el número de filas y <span class="math notranslate nohighlight">\(m\)</span> el número de columnas, y tienen la forma:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a} = \begin{pmatrix} a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22} \\ a_{31} &amp; a_{32} \\ a_{41} &amp; a_{42} \end{pmatrix}\)</span></p>
+<p>Por lo tanto, los vectores son sencillamente matrices de <span class="math notranslate nohighlight">\(n \times 1\)</span> y se pueden definir, como es usual en Numpy, usando el método <code class="docutils literal notranslate"><span class="pre">np.array()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e_1</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">e_2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">e_3</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">e_4</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Imprimamos el vector <span class="math notranslate nohighlight">\(\pmb{e_1}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">e_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5]
+ [0.5]
+ [0.5]
+ [0.5]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tratar a los vectores como matrices tiene la ventaja de que podemos usar las mismas operaciones ya definidas para matrices de forma natural. Veamos algunas de ellas que nos serán de mucha utilidad.</p>
+<p><em>Ejercicio: Pruebe imprimir los demas vectores de entrada.</em></p>
+<section id="traspuesta">
+<h2>Traspuesta<a class="headerlink" href="#traspuesta" title="Link to this heading">#</a></h2>
+<p>La <em>traspuesta</em> de una matriz se logra girándola 90 grados; la primera fila se vuelve la primera columna, la segunda fila se vuelve la segunda columna, y así hasta convertir todas las filas en columnas. Por ejemplo, la traspuesta de <span class="math notranslate nohighlight">\(\pmb{a}\)</span> se define como:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a'} = \begin{pmatrix} a_{11} &amp; a_{21} &amp; a_{31} &amp; a_{41} \\ a_{12} &amp; a_{22} &amp; a_{32} &amp; a_{42} \end{pmatrix}\)</span></p>
+<p>En Python usamos la propiedad <code class="docutils literal notranslate"><span class="pre">.T</span></code> para obtener la traspuesta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">e_1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5 0.5 0.5 0.5]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Ejercicio: Pruebe imprimir la traspuesta de los demas vectores de entrada.</em></p>
+</section>
+<section id="producto-escalar">
+<h2>Producto escalar<a class="headerlink" href="#producto-escalar" title="Link to this heading">#</a></h2>
+<p>El producto escalar, o producto interno, es la multiplicación entre un vector columna y un vector fila. Como nuestros vectores tienen una columna, para obtener el producto escalar necesitamos trasponer uno de ellos:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a} \cdot \pmb{b} = \pmb{a'} \pmb{b} = \sum_{i}a_ib_i\)</span></p>
+<p>Usando como ejemplo los vectores <span class="math notranslate nohighlight">\(e_1\)</span> y <span class="math notranslate nohighlight">\(e_2\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\begin{split}
+\pmb{e_1'} \pmb{e}_2 &amp;= \begin{pmatrix} 0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5 \end{pmatrix} \begin{pmatrix} 0.5 \\ -0.5 \\ 0.5 \\ -0.5 \end{pmatrix} \\
+&amp;= 0.5 \times 0.5 + 0.5 \times -0.5 + 0.5 \times 0.5 + 0.5 \times -0.5 \\
+&amp;= 0.25 - 0.25 + 0.25 - 0.25 \\
+&amp;= 0
+\end{split}\)</span></p>
+<p>En Numpy, usamos el método <code class="docutils literal notranslate"><span class="pre">.dot()</span></code> en conjunto con la traspuesta <code class="docutils literal notranslate"><span class="pre">.T</span></code> para calcular el producto escalar de dos vectores:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">e_1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Ejercicio: calcule el producto escalar entre todos los vectores e, incluyendo consigo mismos.</em></p>
+<p><strong>Pregunta:</strong> ¿Qué propiedad cumplen los vectores <span class="math notranslate nohighlight">\(e_{i}\)</span> para que sus productos internos den los resultados de arriba?</p>
+<p><a class="reference external" href="https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/solutions/Practico3_Pregunta.py">Hacé click para la solución</a></p>
+</section>
+<section id="norma">
+<h2>Norma<a class="headerlink" href="#norma" title="Link to this heading">#</a></h2>
+<p>El largo, o la norma <span class="math notranslate nohighlight">\(\lVert \pmb{a} \rVert\)</span>, de un vector <span class="math notranslate nohighlight">\(\pmb{a}\)</span> se calcula como:</p>
+<p><span class="math notranslate nohighlight">\(\lVert \pmb{a} \rVert = \sqrt{\sum_i a_i ^ 2}\)</span></p>
+<p>Usando el producto escalar como herramienta de sintetización, podemos reescribir la norma como:</p>
+<p><span class="math notranslate nohighlight">\(\lVert \pmb{a} \rVert = \sqrt{\pmb{a'} \pmb{a}}\)</span></p>
+<p>Vamos como hacerlo en Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e_1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_1</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Ejercicio: calcule la norma de todos los vectores e.</em></p>
+</section>
+<section id="nuestra-primera-red-neuronal">
+<h2>Nuestra primera red neuronal<a class="headerlink" href="#nuestra-primera-red-neuronal" title="Link to this heading">#</a></h2>
+<p>Ahora, en una red neuronal, los vectores de entradas van a ser un vector con números que representarán las diferentes entradas que ingresan a la neurona. Se llama vector porque podría estar en un espacio n-dimensional y esto marca una flecha entre cero y ese punto. Tiene propiedades de los vectores y se puede definir el producto escalar. Cuando el mismo es 0, indica que el vector es ortogonal. Cada número de esos vectores representa la actividad de una fibra. El problema de aprendizaje sería que dada una entrada, se produzca una salida.</p>
+<p>Creemos ahora vectores de salida <span class="math notranslate nohighlight">\(s_i\)</span>, de largo 3, que estarán asociados con cada vector de entrada <span class="math notranslate nohighlight">\(e_i\)</span> que definimos arriba.</p>
+<p><span class="math notranslate nohighlight">\(s_1 = \begin{pmatrix} 12 \\ 0.31 \\ \pi \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(s_2 = \begin{pmatrix} -5 \\ 3.1 \\ 0.2 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(s_3 = \begin{pmatrix} 1 \\ -1 \\ -1 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(s_4 = \begin{pmatrix} \sqrt 2 \\ e \\ 0 \end{pmatrix}\)</span></p>
+<p>Que, recordemos, estaban definidos como:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{e}_1 = \begin{pmatrix} 0.5 \\ 0.5 \\ 0.5 \\ 0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_2 = \begin{pmatrix} 0.5 \\ -0.5 \\ 0.5 \\ -0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_3 = \begin{pmatrix} 0.5 \\ 0.5 \\ 0.5 \\ -0.5 \end{pmatrix}\)</span>
+<span class="math notranslate nohighlight">\(\pmb{e}_4 = \begin{pmatrix} 0.5 \\ -0.5 \\ -0.5 \\ 0.5 \end{pmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.31</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]])</span>
+<span class="n">s_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]])</span>
+<span class="n">s_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">s_4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las salidas pueden tener distintas dimensionalidades que el vector de entrada. Si por ejemplo calculamos el producto escalar entre salida y entrada y no es cero, entonces las mismas están relacionadas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">s_1</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-58.41]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>El objetivo de nuestra red neuronal es encontrar una matriz <span class="math notranslate nohighlight">\(\pmb{m}\)</span> de tal forma que cada vez que la multiplico por <span class="math notranslate nohighlight">\(\pmb{e_i}\)</span> me de como resultado el vector <span class="math notranslate nohighlight">\(\pmb{s_i}\)</span> correspondiente. Es decir, que cumpla:</p>
+<p><span class="math notranslate nohighlight">\(\begin{split}
+\pmb{e_1} \cdot \pmb{m} &amp;= \pmb{s_1} \\
+\pmb{e_2} \cdot \pmb{m} &amp;= \pmb{s_2} \\
+\pmb{e_3} \cdot \pmb{m} &amp;= \pmb{s_3} \\
+\pmb{e_4} \cdot \pmb{m} &amp;= \pmb{s_4} \\
+\end{split}\)</span></p>
+<p>Para encontrarlo, basta con definir a <span class="math notranslate nohighlight">\(\pmb{m}\)</span> como :</p>
+<p><span class="math notranslate nohighlight">\(\pmb{m} = \pmb{s_1} \cdot \pmb{e_1} + \pmb{s_2} \cdot \pmb{e_2} + \pmb{s_3} \cdot \pmb{e_3} + \pmb{s_4} \cdot \pmb{e_4}\)</span></p>
+<p>La versión de la regla Hebbiana es hacer el producto externo. Lo que vimos en la clase de multiplicar las entradas por las salidas y que nos genere los pesos, esa es la matriz que se va a generar en el producto externo que da como resultado una matriz. Veamos como hacerlo en Python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cada vez que tengo una entrada y salida, estoy multiplicando y sumando las entradas</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">s_1</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_1</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">s_2</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">s_3</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_3</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">s_4</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_4</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 4.71  8.29  2.29  8.71]
+ [ 2.56 -3.25  0.85  0.46]
+ [ 1.17  0.97  2.17  1.97]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>¡Felicidades! Acaba de crear su primera red neuronal, que puede asociar las entradas <span class="math notranslate nohighlight">\(\pmb{e_i}\)</span> con las salidas <span class="math notranslate nohighlight">\(\pmb{s_i}\)</span>.</p>
+<p>A continuación ponemos a prueba la red. Primero verificamos que la salida del producto interno entre <span class="math notranslate nohighlight">\(\pmb{m}\)</span> y el vector <span class="math notranslate nohighlight">\(\pmb{e_2}\)</span> de como resultado el vector deseado <span class="math notranslate nohighlight">\(\pmb{s_2}\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imprimo la entrada e1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">e_1</span><span class="p">)</span>
+
+<span class="c1"># Imprimo la red neuronal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Imprimo el producto de M y e1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_1</span><span class="p">))</span>
+
+ <span class="c1"># Imprimo la salida esperada s1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5]
+ [0.5]
+ [0.5]
+ [0.5]]
+[[ 4.71  8.29  2.29  8.71]
+ [ 2.56 -3.25  0.85  0.46]
+ [ 1.17  0.97  2.17  1.97]]
+[[12.  ]
+ [ 0.31]
+ [ 3.14]]
+[[12.  ]
+ [ 0.31]
+ [ 3.14]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Ejercicio: Pruebe que salida produce para las demás entradas.</em></p>
+</section>
+<section id="similitud-de-vectores">
+<h2>Similitud de vectores<a class="headerlink" href="#similitud-de-vectores" title="Link to this heading">#</a></h2>
+<p>Cuando comparamos vectores, muchas veces lo que nos interesa es el ángulo entre los mismos, que nos da una relación de similitud que descuenta el largo de los vectores, y que tiene varias ventajas analíticas.</p>
+<p>El ángulo entre dos vectores <span class="math notranslate nohighlight">\(\pmb{a}\)</span> y <span class="math notranslate nohighlight">\(\pmb{b}\)</span> se calcula tomando el producto interno entre los vectores, dividido por el producto de la norma de cada vector:</p>
+<div class="math notranslate nohighlight">
+\[\cos{(\theta(\pmb{a},\pmb{b}))} = \frac{\pmb{a} \cdot \pmb{b}}{\lvert \pmb{a} \rvert \lvert \pmb{b} \rvert} \]</div>
+<p>Abajo calculamos el coseno del ángulo entre la salida obtenida del producto de <em>e4</em> y <em>M</em>, y la salida esperada <em>s4</em>.</p>
+<p><strong>Nota:</strong> Cuando el coseno del ángulo es 1, los vectores son paralelos, y cuando es 0 son ortogonales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtenemos la salida con la matriz m</span>
+<span class="n">s_4r</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_4</span><span class="p">)</span>
+
+<span class="c1"># Norma del vector obtenido con la red</span>
+<span class="n">norma_s_4r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s_4r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4r</span><span class="p">))</span>
+
+<span class="c1"># Norma del vector esperado</span>
+<span class="n">norma_s_4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s_4</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4</span><span class="p">))</span>
+
+<span class="c1"># Calculamos el coseno</span>
+<span class="n">coseno_vectores</span> <span class="o">=</span> <span class="n">s_4r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norma_s_4r</span> <span class="o">*</span> <span class="n">norma_s_4</span><span class="p">)</span>
+
+<span class="c1">#Imprimimos el resultado</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coseno_vectores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un coseno de 1 significa que el vector que predijo la red neuronal es paralelo (equivalente) al esperado.</p>
+<p>La red neuronal <span class="math notranslate nohighlight">\(\pmb{m}\)</span> puede asociar correctamente las entradas <span class="math notranslate nohighlight">\(\pmb{e_i}\)</span> con las salidas <span class="math notranslate nohighlight">\(\pmb{s_i}\)</span>. Pero que ocurre si en lugar de utilizar una entrada conocida, como por ejemplo <span class="math notranslate nohighlight">\(\pmb{e_4}\)</span>, utilizamos como entrada un vector similar pero no igual a este. ¿La matriz la asocia a una salida similar a <span class="math notranslate nohighlight">\(\pmb{s_4}\)</span>?</p>
+<p>Para averiguarlo, definimos un nuevo vector <span class="math notranslate nohighlight">\(\pmb{e_{4p}}\)</span> (<span class="math notranslate nohighlight">\(\pmb{e_4}\)</span> perturbado), sumándole 0.1 a cada entrada de <span class="math notranslate nohighlight">\(\pmb{e_4}\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{e_{4p}} = \begin{pmatrix} 0.5 + 0.1 \\ -0.5 + 0.1 \\ -0.5 + 0.1 \\0.5+0.1 \end{pmatrix}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos el nuevo vector de entrada</span>
+<span class="n">e_4p</span> <span class="o">=</span> <span class="n">e_4</span> <span class="o">+</span> <span class="mf">0.1</span>
+
+<span class="c1"># Obtenemos la salida con la matriz m para ambas entradas</span>
+<span class="n">s_4r</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_4</span><span class="p">)</span>
+<span class="n">s_4p</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">e_4p</span><span class="p">)</span>
+
+<span class="c1"># Imprimimos la salida de la red con el vector original</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s_4r</span><span class="p">)</span>
+
+<span class="c1"># Imprimimos la salida de la red con nuevo vector perturbado</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s_4p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.41]
+ [2.72]
+ [0.  ]]
+[[3.81]
+ [2.78]
+ [0.63]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>¿Son estas salidas similares? Usemos el coseno como herramienta para medirlo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Norma del vector obtenido</span>
+<span class="n">norma_s_4p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s_4p</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4p</span><span class="p">))</span>
+
+<span class="c1"># Norma del vector esperado</span>
+<span class="n">norma_s_4</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">s_4</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4</span><span class="p">))</span>
+
+<span class="c1"># Calculamos el coseno</span>
+<span class="n">coseno_vectores</span> <span class="o">=</span> <span class="n">s_4p</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">s_4</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norma_s_4p</span> <span class="o">*</span> <span class="n">norma_s_4</span><span class="p">)</span>
+
+<span class="c1">#Imprimimos el resultado</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">coseno_vectores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.89]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Un coseno cercano a 1 significa que la red neuronal no solo puede asociar correctamente los vectores de entrada a los de salida esperados, sino que también puede asociar vectores parecidos a los de entrada a vectores parecidos a los de salida. Es decir, puede asociar vectores nuevos, no solo los que aprendió.</p>
+</section>
+<section id="red-neuronal-2-0">
+<h2>Red neuronal 2.0<a class="headerlink" href="#red-neuronal-2-0" title="Link to this heading">#</a></h2>
+<p>A continuación hacemos una nueva red un poco más grande. Para eso primero vamos a crear nuestras entradas “ortonormales”, que la red puede recordar fácilmente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Primero generamos una matriz de números aleatorios entre 0 y 1, con un tamaño de 100 filas y 30 columnas</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La matriz A tiene forma&quot;</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esta es la primera columna de A</span><span class="se">\n</span><span class="si">{</span><span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Este es el producto interno de las columnas 1 y 2: </span><span class="si">{</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La matriz A tiene forma (100, 30)
+Esta es la primera columna de A
+[0.81 0.01 0.33 0.61 0.5  0.77 0.16 0.65 0.53 0.67 0.91 0.52 0.25 0.02
+ 0.58 0.51 0.07 0.41 0.51 0.69 0.35 0.63 0.7  0.19 0.35 0.39 0.12 0.45
+ 0.63 0.79 0.83 0.25 0.28 0.23 0.36 0.39 0.32 0.84 1.   0.48 0.31 0.57
+ 0.58 0.08 0.21 0.99 0.68 0.68 0.3  0.22 0.43 0.55 0.63 0.28 0.43 0.57
+ 0.09 0.97 0.22 0.86 0.69 0.79 0.69 0.74 0.67 0.2  0.76 0.31 0.8  0.92
+ 0.74 0.53 0.75 0.98 0.48 0.46 0.75 0.92 0.51 0.75 0.24 0.8  0.29 0.97
+ 0.87 0.19 0.92 0.54 0.27 0.56 0.78 0.53 0.41 0.08 0.53 0.07 0.75 0.24
+ 0.19 0.61]
+Este es el producto interno de las columnas 1 y 2: 24.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Luego usamos un truco de algebra lineal (llamado SVD) que nos permite obtener</span>
+<span class="c1"># una matriz con 30 columnas ortogonales a partir de A</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">orth</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;La matriz E tiene forma&quot;</span><span class="p">,</span> <span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esta es la primera columna de E</span><span class="se">\n</span><span class="si">{</span><span class="n">E</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Vemos que el producto interno entre columnas sea 0 (o cercano). Pruebe otras columnas</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Este es el producto interno de las columnas 1 y 2: </span><span class="si">{</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La matriz E tiene forma (100, 30)
+Esta es la primera columna de E
+[ 0.03  0.16  0.14 -0.08  0.06 -0.12  0.07 -0.07 -0.13  0.12 -0.03 -0.01
+  0.05  0.01  0.06  0.13 -0.01 -0.09 -0.14  0.13 -0.01 -0.15 -0.07  0.21
+ -0.07  0.06  0.16  0.08  0.05 -0.21 -0.   -0.04  0.14  0.17 -0.21 -0.08
+  0.16 -0.02 -0.12 -0.04  0.09  0.03  0.03  0.05  0.12 -0.2   0.02 -0.05
+ -0.    0.08 -0.09 -0.1  -0.09  0.07  0.01 -0.11  0.14 -0.12  0.07 -0.12
+ -0.06  0.03 -0.03 -0.08 -0.04  0.07  0.05 -0.    0.13  0.05 -0.2   0.15
+  0.1  -0.05  0.13 -0.07 -0.1  -0.11 -0.18  0.15 -0.01 -0.11 -0.1   0.04
+ -0.1   0.09  0.12  0.02 -0.09 -0.05  0.01  0.15  0.04  0.05 -0.04  0.08
+ -0.08 -0.06  0.1  -0.12]
+Este es el producto interno de las columnas 1 y 2: 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>La matriz E tiene columnas que son ortogonales.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Preguntas:</strong> ¿Cuál es la norma de cada columna?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">7</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">norma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora creamos nuestras salidas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Ejercicio: Imprima las salidas</em></p>
+<p>Y creemos la red neuronal de la misma forma que lo hicimos anteriormente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Probemos como funciona</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#E 2 es la tercera columna de la matriz de entrada. El tercer lugar da un uno, que se explica por la salida correspondiente.</span>
+<span class="c1"># Cada una de las columnas de E, se asocia a las salidas de S.</span>
+<span class="n">salida</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E</span><span class="p">[:,</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salida</span><span class="o">*</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">salida</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.00001</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-0.  0. -0.  1. -0. -0. -0. -0. -0. -0. -0. -0. -0. -0. -0. -0. -0.  0.
+ -0.  0. -0.  0. -0. -0. -0. -0. -0. -0. -0. -0.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Es bueno mirar como queda la matriz M. Para eso hacemos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-0.11 -0.1  -0.09 ... -0.09 -0.09 -0.09]
+ [ 0.03  0.16  0.14 ... -0.06  0.1  -0.12]
+ [-0.16  0.06  0.03 ... -0.12 -0.01 -0.24]
+ ...
+ [ 0.12 -0.12  0.1  ...  0.02  0.2  -0.01]
+ [-0.04 -0.03  0.02 ... -0.03  0.01 -0.13]
+ [ 0.   -0.15 -0.04 ... -0.05 -0.05 -0.08]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>También podemos mirar como queda la matriz M utilizando Matplotlib para dibujar las filas y columnas con colores, un color oscuro significa que hay un valor cercano a 0, mientras que un color claro significa que es un valor cercano a 1:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/886241c49a25d2003214148eaa84110af1d8169fd940bdaada4ddff4c5dad890.png" src="../_images/886241c49a25d2003214148eaa84110af1d8169fd940bdaada4ddff4c5dad890.png" />
+</div>
+</div>
+<p>Vamos a intentar hacer lo siguiente. vamos destruyendo la matriz al azar probamos qué tanto correlacionan las salidas deseadas con las salidas obtenidas. Primero a mano y viendo el resultado. Luego haremos un programa.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copio la red para no modificarla</span>
+<span class="n">Mp</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Defino una entrada cualquiera</span>
+<span class="n">E_i</span> <span class="o">=</span> <span class="n">E</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Pruebo una entrada</span>
+<span class="n">S_r</span> <span class="o">=</span> <span class="n">Mp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E_i</span><span class="p">)</span>
+
+<span class="c1"># Pongo una componente cualquiera de la matriz igual a 0</span>
+<span class="n">Mp</span><span class="p">[</span><span class="mi">7</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">0</span> 
+
+<span class="c1"># Pruebo de vuelta</span>
+<span class="n">S_rp</span> <span class="o">=</span> <span class="n">Mp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E_i</span><span class="p">)</span>
+
+<span class="c1"># Imprimimos los resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Salida esperada: </span><span class="si">{</span><span class="n">S_r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Salida obtenida: </span><span class="si">{</span><span class="n">S_rp</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculamos sus normas</span>
+<span class="n">norma_S_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S_r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_r</span><span class="p">))</span>
+<span class="n">norma_S_rp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">S_rp</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_rp</span><span class="p">))</span>
+
+<span class="c1"># Calculamos el coseno</span>
+<span class="n">coseno_vectores</span> <span class="o">=</span> <span class="n">S_r</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_rp</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">norma_S_r</span> <span class="o">*</span> <span class="n">norma_S_rp</span><span class="p">)</span>
+
+<span class="c1"># Imprimimos el coseno</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similitud: </span><span class="si">{</span><span class="n">coseno_vectores</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Salida esperada: [ 0.  0.  1. -0.  0. -0.  0. -0.  0.  0. -0. -0.  0.  0.  0.  0. -0. -0.
+ -0. -0.  0. -0. -0.  0.  0.  0.  0.  0.  0. -0.]
+Salida obtenida: [ 0.  0.  1. -0.  0. -0.  0.  0.  0.  0. -0. -0.  0.  0.  0.  0. -0. -0.
+ -0. -0.  0. -0. -0.  0.  0.  0.  0.  0.  0. -0.]
+Similitud: 1.0000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observaciones:</p>
+<ol class="arabic simple">
+<li><p>Si yo destruyo pesos de la matriz la misma sigue funcionando, el lugar correspondiente dará un valor bien cercano a 1.</p></li>
+<li><p>Tiene resistencia a la rotura porque hay mucha redundancia en la matriz. Esto nos permite ir rompiendo y acercándonos a 1.</p></li>
+<li><p>Vemos como el coseno del angulo entre el vector salida y el vector entrada siempre está cerca de 1.</p></li>
+<li><p>Esto es una propiedad interesante vinculada a las memorias de corte biológico. Se puede romper o perturbar el vector y el sistema da una salida medianamente correcta.</p></li>
+<li><p>La tolerancia al daño y la capacidad para generalizar son la base de los fenómenos colectivos de estas redes neuronales. La propiedad distribuida por varios lugares. La memoria está en los pesos.</p></li>
+<li><p>En este modelo de memoria, yo no represento a los objetos, tengo información para reconstruir la representación de los objetos.</p></li>
+<li><p>Almacenamiento de la información superpuesta y distribuida.</p></li>
+</ol>
+<p>Podemos hacer una evaluación más sistemática. Por ejemplo, podemos romper en forma sistemática la red neuronal (en lugar de hacerlo a mano) de tal forma que podamos romper un porcentaje dado.</p>
+<p>Antes de pasar al código, veamos primero como podemos romper una matriz. Supongamos que tenemos definido una matriz <span class="math notranslate nohighlight">\(\pmb{a}\)</span> de la siguiente forma:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a} = \begin{pmatrix} a_{11} &amp; a_{21} &amp; a_{31} &amp; a_{41} \\ a_{12} &amp; a_{22} &amp; a_{32} &amp; a_{42} \end{pmatrix}\)</span></p>
+<p>Si construimos una matriz de ceros y unos, por ejemplo,</p>
+<p><span class="math notranslate nohighlight">\(\pmb{b} = \begin{pmatrix} 0 &amp; 1 &amp; 1 &amp; 0 \\ 1 &amp; 1 &amp; 0 &amp; 0 \end{pmatrix}\)</span></p>
+<p>Podemos hacer una multiplicación componente a componente. Eso en matemática NO ES el producto común de las matrices; se lo conoce como producto de Hadamard y a veces se anota con un círculo con un punto inscripto <span class="math notranslate nohighlight">\(\odot\)</span>. En Python multiplicar dos matrices con * da por defecto ese producto. Al multiplicar la matriz <span class="math notranslate nohighlight">\(\pmb {a}\)</span> por la <span class="math notranslate nohighlight">\(\pmb {b}\)</span> obtenemos:</p>
+<p><span class="math notranslate nohighlight">\(\pmb{a} * \pmb{b} = \begin{pmatrix} 0 &amp; a_{21} &amp; a_{31} &amp; 0 \\ a_{12} &amp; a_{22} &amp; 0 &amp; 0 \end{pmatrix}\)</span></p>
+<p>La clave estará entonces en controlar la cantidad de ceros y unos que tiene esta matriz <span class="math notranslate nohighlight">\(\pmb{b}\)</span>. En Python, para obtener una matriz con un 80% de ceros, podemos hacerlo de la siguiente forma:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="mf">0.8</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Veámosla en accion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@widgets</span><span class="o">.</span><span class="n">interact</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">r</span><span class="p">])</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;constrained&quot;</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">vmax</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">vmax</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "bb5806fd426340ffa25269cea74a401f"}</script></div>
+</div>
+<p>Ahora si, podemos proceder a perturbar la red neuronal 2.0 en forma sistemática, y medir que tan bien sigue precidiendo los vectores de salida esperados:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normaliza un vector</span>
+<span class="c1"># Da como resultado un vector de norma 1</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">normalizar</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">norma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">norma</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">v</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">v</span> <span class="o">/</span> <span class="n">norma</span>
+
+<span class="c1"># Dada una red neuronal Mp, una matriz de entrada E y una matriz de salida esperada S:</span>
+<span class="c1"># Para cada par de vectores de entrada E_i y de salida S_i, calcula el resultado de la red neuronal</span>
+<span class="c1"># Y devuelve el promedio de todos los cosenos.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluanet</span><span class="p">(</span><span class="n">Mp</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">S</span><span class="p">):</span>
+    <span class="c1"># Obtenemos el numero de filas y columnas</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">E</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Inicializamos un vector que va a guardar los cosenos para cada par de vectores de salida esperada</span>
+    <span class="c1"># y salida obtenida</span>
+    <span class="n">cosenos</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Recorremos cada columna</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Creamos los vectores de entrada y salida esperada</span>
+        <span class="n">E_i</span> <span class="o">=</span> <span class="n">E</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">S_i</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Creamos el vector resultado de la red neural</span>
+        <span class="n">S_ir</span> <span class="o">=</span> <span class="n">Mp</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">E_i</span><span class="p">)</span>
+
+        <span class="c1"># Calculamos la similitud entre la salida esperada y el resultado obtenido con la red</span>
+        <span class="n">cosenos</span> <span class="o">+=</span> <span class="n">normalizar</span><span class="p">(</span><span class="n">S_i</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">normalizar</span><span class="p">(</span><span class="n">S_ir</span><span class="p">))</span>
+
+    <span class="c1"># Devolvemos el promedio</span>
+    <span class="k">return</span> <span class="n">cosenos</span> <span class="o">/</span> <span class="n">n</span>
+
+<span class="c1"># Creamos un vector de largo 20 con valores entre 0 y 1</span>
+<span class="c1"># Por ejemplo, si fuese de largo 3, quedaria: [0, 0.5, 1]</span>
+<span class="n">destroy_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Creamos un vector </span>
+<span class="n">correlaciones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">destroy_rates</span><span class="p">))</span>
+
+<span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">rd</span> <span class="ow">in</span> <span class="n">destroy_rates</span><span class="p">:</span>
+    <span class="c1"># Creamos una matriz de misma forma que M con ceros y unos</span>
+    <span class="c1"># Con un porcentaje de ceros dado por rd</span>
+    <span class="n">destroy_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">rd</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">rd</span><span class="p">])</span>
+
+    <span class="c1"># Perturbamos M</span>
+    <span class="n">Mp</span> <span class="o">=</span> <span class="n">M</span> <span class="o">*</span> <span class="n">destroy_matrix</span>
+
+    <span class="c1"># Vemos que tan bien predice la red neuronal</span>
+    <span class="n">correlaciones</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">evaluanet</span><span class="p">(</span><span class="n">Mp</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">=</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1"># Graficamos las correlaciones</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">destroy_rates</span><span class="p">,</span> <span class="n">correlaciones</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Similitud promedio&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/68ec1f786895aaef469434417f5238e45c302ab88b71456272799e8110aca49f.png" src="../_images/68ec1f786895aaef469434417f5238e45c302ab88b71456272799e8110aca49f.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="S4_Cuaderno4.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Cuaderno 4: Regla de Oja</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traspuesta">Traspuesta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-escalar">Producto escalar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#norma">Norma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nuestra-primera-red-neuronal">Nuestra primera red neuronal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similitud-de-vectores">Similitud de vectores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#red-neuronal-2-0">Red neuronal 2.0</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Maestría en Ciencias Cognitivas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
