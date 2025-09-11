@@ -18,4 +18,6 @@ parts:
     - file: notebooks/W3_Practico2c
   - caption: Redes neuronales
     chapters:
-    - file: notebooks/W4_Cuaderno4
+    - file: S4-redes-neuronales
+    - file: notebooks/S4_Cuaderno4
+    - file: notebooks/S4_Practico3
