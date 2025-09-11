@@ -16,3 +16,5 @@ parts:
     - file: notebooks/W3_Practico2a
     - file: notebooks/W3_Practico2b
     - file: notebooks/W3_Practico2c
+  - caption: Redes neuronales
+    - file: notebooks/W4_Cuaderno4
