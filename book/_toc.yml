@@ -21,3 +21,7 @@ parts:
     - file: S4-redes-neuronales
     - file: notebooks/S4_Cuaderno4
     - file: notebooks/S4_Practico3
+  - caption: Aprendizaje supervisado
+    chapters:
+    - file: notebooks/S5_Cuaderno5
+    - file: notebooks/S5_Practico4
