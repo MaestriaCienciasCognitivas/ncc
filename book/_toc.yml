@@ -10,7 +10,7 @@ parts:
     - file: notebooks/Cuaderno2
   - caption: Modelos de neuronas
     chapters:
-    - file: W2-modelos-neuronas
+    - file: S2-modelos-neuronas
     - file: notebooks/W2_Cuaderno3
     - file: notebooks/W2_Practico1
     - file: notebooks/W3_Practico2a
@@ -25,3 +25,7 @@ parts:
     chapters:
     - file: notebooks/S5_Cuaderno5
     - file: notebooks/S5_Practico4
+  - caption: Aprendizaje por refuerzo
+    chapters:
+    - file: S8-aprendizaje-refuerzo
+    - file: notebooks/S8_Practico5
