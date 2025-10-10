@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -205,6 +205,10 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="S5_Cuaderno5.html">Cuaderno 5: Perceptrones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="S5_Practico4.html">Práctico 4: Redes convolucionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes biológicas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S7_Cuaderno6.html">Cuaderno 6: Convoluciones</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje por refuerzo</span></p>
 <ul class="current nav bd-sidenav">
@@ -531,16 +535,13 @@ El episodio finaliza cuando el pasajero es dejado en la ubicación de destino.</
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Taxi-v3&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s1">&#39;ansi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">env</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;gymnasium&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+
+|<span class=" -Color -Color-Magenta">R</span>: | : :G|
+| : | : : |
+| : :<span class=" -Color -Color-BGYellow"> </span>: : |
+| | : | : |
+|Y| : |<span class=" -Color -Color-Bold -Color-Bold-Blue">B</span>: |
++---------+
 </pre></div>
 </div>
 </div>
@@ -568,13 +569,23 @@ Los siguientes son métodos útiles de <em>env</em>:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+
+|<span class=" -Color -Color-Magenta">R</span>: | : :G|
+| : | : : |
+| : :<span class=" -Color -Color-BGYellow"> </span>: : |
+| | : | : |
+|Y| : |<span class=" -Color -Color-Bold -Color-Bold-Blue">B</span>: |
++---------+
+
+
+Action Space Discrete(6)
+State Space Discrete(500)
+</pre></div>
 </div>
-<p>Según lo verificado por las</p>
-<ul class="simple">
-<li><p>List item</p></li>
-<li><p>List item</p></li>
-</ul>
-<p>impresiones, tenemos un espacio de acción de tamaño 6 y un espacio de estado de tamaño 500:</p>
+</div>
+</div>
+<p>Según lo verificado por las impresiones, tenemos un espacio de acción de tamaño 6 y un espacio de estado de tamaño 500:</p>
 <p>25 plazas, 5 ubicación para el pasajero (contando las cuatro estaciones y el taxi) y los 4 destinos -&gt; 25 x 5 x 4 = 500.</p>
 <ul class="simple">
 <li><p>El rectángulo de color representa el taxi,  amarillo es cuando va sin pasajero y verde con un pasajero.</p></li>
@@ -601,6 +612,20 @@ Los siguientes son métodos útiles de <em>env</em>:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+
+|<span class=" -Color -Color-Magenta">R</span>: | : :G|
+| : | : : |
+| : :<span class=" -Color -Color-BGYellow"> </span>: : |
+| | : | : |
+|Y| : |<span class=" -Color -Color-Bold -Color-Bold-Blue">B</span>: |
++---------+
+
+
+252
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="la-tabla-de-recompensas">
@@ -610,6 +635,16 @@ Los siguientes son métodos útiles de <em>env</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [(1.0, 352, -1, False)],
+ 1: [(1.0, 152, -1, False)],
+ 2: [(1.0, 272, -1, False)],
+ 3: [(1.0, 232, -1, False)],
+ 4: [(1.0, 252, -10, False)],
+ 5: [(1.0, 252, -10, False)]}
 </pre></div>
 </div>
 </div>
@@ -670,6 +705,12 @@ Los siguientes son métodos útiles de <em>env</em>:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 319
+Penalties incurred: 105
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -684,6 +725,23 @@ Los siguientes son métodos útiles de <em>env</em>:</p>
         <span class="n">sleep</span><span class="p">(</span><span class="mf">.01</span><span class="p">)</span>
 
 <span class="n">print_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+---------+
+|<span class=" -Color -Color-Bold -Color-Bold-Blue -Color-Bold-Blue-BGYellow">R</span>: | : :G|
+| : | : : |
+| : : : : |
+| | : | : |
+|Y| : |B: |
++---------+
+  (Dropoff)
+
+Timestep:  319
+State:  0
+Action:  5
+Reward:  20
 </pre></div>
 </div>
 </div>
@@ -795,6 +853,15 @@ Q-table</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  9900
+Training finished.
+
+CPU times: user 2.47 s, sys: 292 ms, total: 2.77 s
+Wall time: 2.54 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -807,6 +874,12 @@ Q-table</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_table</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.83030173, -1.96861712,  2.75200369, -2.76039182, -7.3407171 ,
+       -7.43270651])
 </pre></div>
 </div>
 </div>
@@ -844,6 +917,13 @@ Q-table</p>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results after &#39;</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span> <span class="s1">&#39;episodes:&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average timesteps per episode: &#39;</span><span class="p">,</span><span class="n">total_epochs</span> <span class="o">/</span> <span class="n">episodes</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average penalties per episode: &#39;</span><span class="p">,</span><span class="n">total_penalties</span> <span class="o">/</span> <span class="n">episodes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results after  100 episodes:
+Average timesteps per episode:  12.0
+Average penalties per episode:  0.0
 </pre></div>
 </div>
 </div>
@@ -912,10 +992,25 @@ Q-table</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  10000
+Training finished.
+
+CPU times: user 1.69 s, sys: 218 ms, total: 1.9 s
+Wall time: 1.74 s
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_table</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.0576721 , -0.94399046,  2.75200369, -0.50003236, -7.3682093 ,
+       -7.39345312])
 </pre></div>
 </div>
 </div>
