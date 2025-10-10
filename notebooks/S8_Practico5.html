@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctico 5: Taxi &#8212; Neurociencia Cognitiva y Computacional</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S8_Practico5';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Introducción" href="../S8-aprendizaje-refuerzo.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Neurociencia Cognitiva y Computacional - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Neurociencia Cognitiva y Computacional - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S4-redes-neuronales.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Cuaderno4.html">Cuaderno 4: Regla de Oja</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Practico3.html">Práctico 3: Modelos de memorias matriciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje supervisado</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S5_Cuaderno5.html">Cuaderno 5: Perceptrones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S5_Practico4.html">Práctico 4: Redes convolucionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje por refuerzo</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S8-aprendizaje-refuerzo.html">Introducción</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Práctico 5: Taxi</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/MaestriaCienciasCognitivas/ncc/blob/main/book/notebooks/S8_Practico5.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc/issues/new?title=Issue%20on%20page%20%2Fnotebooks/S8_Practico5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/S8_Practico5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Práctico 5: Taxi</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Práctico 5: Taxi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vamos-a-utilizar-el-problema-del-taxi-autonomo-introducido-por-dietterich2000">Vamos a utilizar el problema del taxi autonomo introducido por [Dietterich2000].</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aprendizaje-por-refuerzo">Aprendizaje por refuerzo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-tabla-de-recompensas">La tabla de recompensas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolviendo-el-entorno-sin-aprendizaje-por-refuerzo">Resolviendo el entorno sin aprendizaje por refuerzo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-aprendizaje-por-refuerzo">Utilizando aprendizaje por refuerzo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumiendo-el-proceso-de-q-learning">Resumiendo el proceso de Q-Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aprovechar-los-valores-aprendidos">Aprovechar los valores aprendidos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementar-q-learning">Implementar Q-learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenando-el-agente">Entrenando el agente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluar-al-agente">Evaluar al agente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-y-optimizaciones">Hiperparámetros y  optimizaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuneando-los-hiperparametros">Tuneando los  hiperparámetros</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="practico-5-taxi">
+<h1>Práctico 5: Taxi<a class="headerlink" href="#practico-5-taxi" title="Link to this heading">#</a></h1>
+<p>Como se vio en clase, la idea detrás del aprendizaje por refuerzo es tan simple como atractiva:
+aprender del ensayo y el error mediante la interacción con el entorno.</p>
+<p>Cada vez que el agente, o el entrenador, realiza una acción en el entorno se proporciona una recompensa o una penalización.</p>
+<p>La tarea del agente es aprender indirectamente, a partir de los refuerzos, a elegir la secuencia de acciones que producen mayor acumulación de refuerzo.</p>
+<p>El objetivo principal de este notebook es demostrar, en un entorno simplificado, cómo se pueden utilizar las técnicas de aprendizaje por refuerzo para abordar un problema.</p>
+<section id="vamos-a-utilizar-el-problema-del-taxi-autonomo-introducido-por-dietterich2000">
+<h2>Vamos a utilizar el problema del taxi autonomo introducido por [Dietterich2000].<a class="headerlink" href="#vamos-a-utilizar-el-problema-del-taxi-autonomo-introducido-por-dietterich2000" title="Link to this heading">#</a></h2>
+<p>El problema conciste en recoger a un pasajero en un lugar y dejarlo en otro, ocupandose de lo siguiente:</p>
+<ul class="simple">
+<li><p>Dejar al pasajero en la ubicación correcta.</p></li>
+<li><p>Tomar el mínimo tiempo posible para dejar al pasajero.</p></li>
+<li><p>Cuidar las normas de seguridad y tráfico.</p></li>
+</ul>
+<p><img alt="image.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGkAAAB5CAYAAAA6VA+hAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAAmdEVYdENyZWF0aW9uIFRpbWUAbWFyIDI5IG5vdiAyMDIyIDEzOjE5OjE2r8TNtwAACnFJREFUeJztnW1wVNUZx393d0M2CRuSLAmJJAKGUUo0iFIaIjoacAqxaJWqdbAy4tCOUqHTgRkJjBOTqkiLUq3UtOVDraEdrW9ERbTOBOVFKlKgVYJBAZNNNtkku0uSzWaz2dsPG+hCk2zYvbubszm/T/ty9jln7/+e55zzPPfcqxQVFalIRjW6WDdAEhwpkgBIkQRAiiQAUiQBCCqSPnMmxbMmY1Si0Zz4R0mcTGFxAVn6kf8mqEgJ+SUsKy3AJEXSBCV1JqXLSshPHPlvpLsTACmSACj/H3FQMM1fzeblV2MYeK8oKupAqf6GnVRW1mBRQTHdyJrND1BgAPDRuLOSippGzhtUsindUM6dU/wO2FtXzfpna3EE1Gi49iG2rioiEUB1ULvlMapP9Ac0J3wbQduJnun3Psm6hWb/Wdt3iJdWV/G5F01sKNmLKSu/i6kD45CiKKjnDqj3OK+sf449jqEDP4OIBEqSmZwMIwqQWHgfa+eeYdv2/dhVwOOkxdaFF0BJJn1SKufcq7e7jbbOgH+GgRTzREwJA289Tlo7evAF1pWYRla6vy7ox9Vh46wHbW0EbSckmDIxp5wbzd04Why4VY1sGExkTkplHKCkzWPFqmkc2rKDo25A7cVubcPlY0gMg32o9rTTZPG/Nua5UT1OWpos2C42pLqwW11DW8dLd7uV7mFKqL0OWqzDFNDCRtB2Ql+nDWtnhGx4O7FZ/F/oPE48qht7swXL8ObOI8ckARjU3UlGF7InCYAUSQCkSAIgRRIAKZIASJEEIIhICsnFq9m2YTHZMY2CG5i1YitP3Z3PJUT4RyVK1iLKtq3hhpSRH9BBIw7B0THlh+VsXDIZHSo+Xx+u9ga+3Ps2r773BfZhQhzxiwGz41ZubyxipisNxWDjdHotNXn7OGMIbykaokh+fLY9VL3wARaMZFxxE0t/vIqH+yt5elczY2uFrGDquI81J2fQmvMmVVc00eudyFTHleR6lNiKhLebtmYrzT5otlgZP6uYFVd/h7TdzQG9yUDSBBNGXw/OTjcx62Q6I6YJSeh6O3G6vMHLX4oN9XJKGuagm/gHtud9QQ8ATTSkHtOg4VpNHBQD4/O+x3VT9fh6PXgDTxx9Pndu3Mwzv1jApBiOa0rOrfzymc2U3T4t5HFtKBuKewYz3G7qMk4MCKQtYfUkXfYiNlQtAhQUnYLqOs37uz+na2z5OvSeDNJwcGycP4elP3sPTxy/iTT6seVs5VeXn6I/iI3hCG9MatvL9hf/QbPxMuYu+T7pB6p480TPheNR/wl2rFvJjnAq0gDVUsMTP62Jig3f+N08f80x5n39MLM1OGHDc3feLlotFhrqP+PNP+8j9UcPsiC2c/WY0D/OjoMJZHj8TlDVOWlNbsGp18alaLaY9bXvZ/exTBbffv1FVxYZSEk3Y05Lju0aR59MmtlMekoYzmMIG6rxOHXGJK6y53MJFwGNGA0jDr3U1e6ja/YPuCU3QA59PneUbeLpR28hK5YTh+wFrHl6E48tCWPiMJQNpYHa3CPobPfzoGU2V7iyyXVex5Vubf6wpmGh/oa97Pkmi5LbrmP8mPJ6Ppzmv/Db6Qfxdizlkf+UsbZ+PskT3qb6stNhTRog5ImDjzNvPc7P3rr44zY++vUjfBT42ZiZOHixZbzDnzLeCauOwZABVgGQIgmAPjc3tzxYIZ+zkfpvO/AEKxgx/FPZbutJTtncQscFFVTo6+DMV42cHWGMTF4tJADhBVglABw4UDjs9/PmhRdolWOSAMjMbJQJJTMre5IASJEEIAoiGUiakE66yRjbM0JnxJSezoTkMOZKWtgIpdqI1zAGMrORRro7AYh8vx0zAdbIIXuSAERl4hDvmdlIE5WJQ9xnZiOMdHcCICcOUbYRCrInCYAUSQCCuDuVvoaDvPtxO13Rac8Q9GP91/t85OkQOisLQHc9n7xr51vPyP+JzMwKgHR3AiBI0i9+kEm/OEWKJACCJP00sCGTfsOgRdJPAxsy6SeJKEHWSQrJxY/ym1vqqXhqF1a5ogobJWsR68uvYs+659nXPbIDKnuSAAiS9NPAhkz6DYMWST8NbMiknySiyIlDlJEThzhFiiQAgmzHjB/kdsw4Rbo7AZAiCUAUMrOjZCulPp+7n9zKQ4Wx3cstM7NxihRJAAQRKY62dIZSbVRrC5U42tIZCmKINMYR47Y1cbQzIxRkTxIAQUSKoy2dISCGSHG0pTMUxBBpjCMnDpeAnDhIhkSKJABRyMyOkpvcKqDQS+vpeqwx3FsqM7NxinR3AiCTflEmak/H1GWv5IblDzLetZvDf6ygxa0C40greZl5c/NwH1vL3vcO0BeK8Wijm8rSig2U5ugAFZ/XzVlrPZ+99ypvHGweFVdIheTufC2vUV/ngJQFTJ89FQVg/ELyZ+WB9win9h8UQ6Dz+GitfZHHN2zk8crnqD6sp2jFz1kybXTcOzm0MUl10LL/b5ztN5A65ydkGceRNud+shKh5+h2Gh1aPwMz8km/vs52mq1Wmhu/5vCuT/jKN5EpeSlc4JRES/qpbW9Q/2UbpCwgf/4Kpl87BTyfcvLTI4T4gNChiWbSTzGSPWc203Q2zjR0X7BkiFXSL/RTQu2idX819hlryPjuclC9dH26naZOER/XrCPntjJ+vxjQ6dB72zn81xfYeSrcx1NpQ3j91r6T+n/fw9zrL4Oej6n/5/HIPOw34rE7H20fV/G7D5vwGVKYNHMhdy9dyR1Nm/j7V+7zpQSN3fVg/+YoXhXU5gO094i7Lg4ck4588DI1J7K4ecE1JMW6YQizmI120s+H16uSkJRMQuAYKJN+wxCFpF+CyUxOdjY5udMouOlebivU0VBXT2eAc4hV0k+MfFLE0ZF18yoqblbx+Tx0tzVyfNc2XtvdNCrurxe2SL6TFXy4qUKLtgxNJCcOvtO8vnElr4+gqKATB0k0kCIJgEz6Rb0ZMukXl0h3JwBSJAGQIglAUJH0mTMpnjUZo7ybsSYoiZMpLC4g6xJCFkFFSsgvYVlpASYpkiYoqTMpXVZCfuLIfyPdnQBIkQRgkHWSgmn+ajYvv3ogsKegKCrqQKn+hp1UVtZgUUEx3ciazQ9QYADw0bizkoqaxv8tWJVsSjeUc+cUvwP21lWz/tlaHAE1Gq59iK2rikgEUB3UbnmM6hMBGVENbARtJ3qm3/sk6xaa/Wdt3yFeWl3F5wHXAYRjQ8leTFn5XUwdGIcURUE9d0C9x3ll/XPscQy9XB10MaskmcnJMKIAiYX3sXbuGbZt349dBTxOWmxd/usYlGTSJ6Vyzr16u9to6wy8wsFAinkipoSBtx4nrR09F2RvlcQ0stKNAxd89OPqsHH2gtCGBjaCthMSTJmYU86N5m4cLQ7cqkY2DCYyJ6UyDlDS5rFi1TQObdnBUTeg9mK3tuEaJvowaBRc7WmnyeJ/bcxzo3qctDRZsF1sSHVht7qGto6X7nYr3cOUUHsdtFiHKaCFjaDthL5OG9bOCNnwdmKz+L/QeZx4VDf2ZguW4c2dR45JAiBjdwIge5IASJEE4L8Xde2YjjAtUAAAAABJRU5ErkJggg==" /></p>
+<p>La figura muestra un entorno representado por una cuadrícula de 5 X 5, donde se encuentra el taxi (t). Hay cuatro espacios especialmente ubicados, marcados como R, B, G, Y. En cada episodio, el taxi comienza en un lugar elegido al azar. Hay un pasajero en uno de los cuatro lugares (elegido al azar), y ese pasajero desea ser transportado a una de las cuatro ubicaciones (también elegida al azar).
+El taxi debe ir a la ubicación del pasajero, recojerlo, ir a la ubicación de destino, y dejar al pasajero allí.
+El episodio finaliza cuando el pasajero es dejado en la ubicación de destino.</p>
+<p>Hay seis <strong>acciones</strong> que puede tomar el agente en un estado dado:
+- (a) cuatro acciones de navegación que mueven el taxi: norte, sur, este u oeste
+- (b) dos acciones con los pasajeros: recogida y arribo</p>
+<p>El agente recibe 20 puntos por una entrega exitosa y pierde 1 punto por cada paso a seguir. También hay una penalización de 10 puntos por acciones ilegales de recogida y arribo.</p>
+<p>[Dietterich2000]	T Erez, Y Tassa, E Todorov, «Hierarchical Reinforcement Learning with the MAXQ Value Function Decomposition», 2011.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="aprendizaje-por-refuerzo">
+<h1>Aprendizaje por refuerzo<a class="headerlink" href="#aprendizaje-por-refuerzo" title="Link to this heading">#</a></h1>
+<section id="implementacion">
+<h2>Implementación:<a class="headerlink" href="#implementacion" title="Link to this heading">#</a></h2>
+<p>Utilizaremos la biblioteca OpenAI Gym, la cuál ofrece diferentes entornos para probar un agente. La biblioteca se encarga de la API para proporcionar toda la información que requeriría el agente, como posibles acciones, recompenzas y estado actual. De esta forma solo necesitamos enfocarnos en la parte del algoritmo para el agente.</p>
+<p>Primero instalamos gym, ejecutando la siguiente celda:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Una funcion de ayuda para imprimir el estado de nuestro mundo</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_env</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+  <span class="n">env_str</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">env_str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una vez instalado, podemos cargar el entorno y mostrarlo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Taxi-v3&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s1">&#39;ansi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">env</span>
+<span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+
+<span class="n">print_env</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">gymnasium</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gym</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Taxi-v3&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s1">&#39;ansi&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">env</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;gymnasium&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>La interfaz principal de la biblioteca Gym es <em>env</em>.
+Los siguientes son métodos útiles de <em>env</em>:</p>
+<ul class="simple">
+<li><p>env.reset - Restablece el entorno y devuelve un estado inicial aleatorio.</p></li>
+<li><p>env.step(acción) - Avanza el entorno por un paso de tiempo y retorna:
+- observation: observaciones del entorno
+- reward: si la acción fue beneficiosa o no
+- terminated: indica si recogió y dejó con éxito a un pasajero, también llamado “episode”
+- truncated: si termino la ejecución por otros motivos (p.e. se ejecutaron más pasos que el límite) - no usado en este ejemplo
+- info: información adicional como el rendimiento y la latencia para fines de depuración - no usado en este ejemplo</p></li>
+<li><p>env.render -  Renderiza una imagen del entorno, es útil para visualizar el entorno</p></li>
+</ul>
+<p>Introduciendose más en el ambiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span> <span class="c1"># restablece el entorno y devuelve un estado inicial aleatorio</span>
+<span class="n">print_env</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="c1"># renderiza un cuadro</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Action Space </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State Space </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Según lo verificado por las</p>
+<ul class="simple">
+<li><p>List item</p></li>
+<li><p>List item</p></li>
+</ul>
+<p>impresiones, tenemos un espacio de acción de tamaño 6 y un espacio de estado de tamaño 500:</p>
+<p>25 plazas, 5 ubicación para el pasajero (contando las cuatro estaciones y el taxi) y los 4 destinos -&gt; 25 x 5 x 4 = 500.</p>
+<ul class="simple">
+<li><p>El rectángulo de color representa el taxi,  amarillo es cuando va sin pasajero y verde con un pasajero.</p></li>
+<li><p>“|” representa una pared que el taxi no puede cruzar.</p></li>
+<li><p>R, G, Y, B son las posibles ubicaciones de recogida y destino. La letra azul representa la ubicación actual de recogida de pasajeros, y la letra púrpura es el destino actual.</p></li>
+</ul>
+<p>Se necesita  una forma de identificar un estado de manera única, esto se realiza mediante la asignación de un número único a cada estado posible, y el aprendizaje por refuerzos aprenderá a elegir un número de acción de 0-5 donde:</p>
+<ul class="simple">
+<li><p>0 = sur</p></li>
+<li><p>1 = norte</p></li>
+<li><p>2 = este</p></li>
+<li><p>3 = oeste</p></li>
+<li><p>4 = pickup</p></li>
+<li><p>5 = dropoff</p></li>
+</ul>
+<p>El aprendizaje por refuerzo aprenderá el mapeo estado - acción óptimo, es decir, el agente explora el entorno y toma acciones basadas en las recompensas definidas en el entorno.</p>
+<p>La acción óptima para cada estado es la acción que tiene la mayor recompensa acumulativa a largo plazo.</p>
+<p>Recordar que el taxi se encuenetra en la fila 3, columna 1,  el pasajero está en la ubicación 2 y nuestro destino es la ubicación 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">starting_state</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+<span class="n">print_env</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">starting_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-tabla-de-recompensas">
+<h2>La tabla de recompensas<a class="headerlink" href="#la-tabla-de-recompensas" title="Link to this heading">#</a></h2>
+<p>Cuando se crea el entorno,  se crea también una tabla de transiciones y recompensas inicial llamada <strong>P</strong>. Podemos pensar en ella como una matriz que tiene el número de estados como filas y el número de acciones como columnas.</p>
+<p>Como cada estado está en esta matriz, podemos ver los valores de recompensa predeterminados asignados al estado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El diccionario tiene la estructura:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>           acción: [(probabilidad, proximo estado, recompensa, done)]
+</pre></div>
+</div>
+<p>Donde:</p>
+<ul class="simple">
+<li><p>0-5 corresponde a las acciones que puede tomar el taxi en el estado actual.</p></li>
+<li><p>La probabilidad es siempre 1</p></li>
+<li><p>El siguiente estado es el estado en el que estaríamos si tomamos la acción en este índice del diccionario,</p></li>
+<li><p>Todas las acciones de movimiento tienen una recompensa de -1 y las acciones de recogida / devolución tienen una recompensa de -10 en este estado en particular. Si estamos en un estado donde el taxi tiene un pasajero y está en el destino correcto veríamos una recompensa de 20 en la acción de devolución (5).</p></li>
+<li><p>“done” se usa para decirnos cuándo hemos dejado con éxito a un pasajero en la ubicación correcta. Cada entrega exitosa es el final de un episodio.</p></li>
+</ul>
+</section>
+<section id="resolviendo-el-entorno-sin-aprendizaje-por-refuerzo">
+<h2>Resolviendo el entorno sin aprendizaje por refuerzo<a class="headerlink" href="#resolviendo-el-entorno-sin-aprendizaje-por-refuerzo" title="Link to this heading">#</a></h2>
+<p>Veamos qué sucedería si tratamos de utilizar la fuerza bruta para resolver el problema.</p>
+<p>Dado que tenemos nuestra tabla <strong>P</strong> para recompensas predeterminadas en cada estado, podemos intentar que nuestro taxi navegue solo utilizando esa información.</p>
+<p>Crearemos un bucle que se ejecutará hasta que un pasajero llegue a un destino (un episodio), o en otras palabras, cuando la recompensa recibida sea 20.</p>
+<p>El método <em>env.action_space.sample()</em> selecciona automáticamente una acción aleatoria del conjunto de todas las posibles acciones.</p>
+<p>Veamos qué pasa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">penalties</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># for animation</span>
+
+<span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">truncated</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">truncated</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span> <span class="c1">#  selecciona una acción aleatoria del conjunto de todas las posibles acciones</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="mi">10</span><span class="p">:</span>
+        <span class="n">penalties</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Put each rendered frame into dict for animation</span>
+    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s1">&#39;frame&#39;</span><span class="p">:</span> <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">(),</span>
+        <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="n">state</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span>
+        <span class="s1">&#39;reward&#39;</span><span class="p">:</span> <span class="n">reward</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">epochs</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timesteps taken: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epochs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Penalties incurred: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">penalties</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">print_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frames</span><span class="p">):</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;frame&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Timestep: &#39;</span><span class="p">,</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;State: &#39;</span><span class="p">,</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Action: &#39;</span><span class="p">,</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;action&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Reward: &#39;</span><span class="p">,</span><span class="n">frame</span><span class="p">[</span><span class="s1">&#39;reward&#39;</span><span class="p">])</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">.01</span><span class="p">)</span>
+
+<span class="n">print_frames</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como se ve, para entregar solo un pasajero el agente le muchisimos pasos y realiza muchas devoluciones incorrectas. Esto se debe a que no estamos aprendiendo de la experiencia pasada. Podemos ejecutar esto una y otra vez, y nunca se optimizará, el agente no recuerda qué acción fue la mejor para cada estado, que es exactamente lo que el aprendizaje por refuerzo hará.</p>
+</section>
+<section id="utilizando-aprendizaje-por-refuerzo">
+<h2>Utilizando aprendizaje por refuerzo<a class="headerlink" href="#utilizando-aprendizaje-por-refuerzo" title="Link to this heading">#</a></h2>
+<p>Q-learning permite al agente usar las recompensas del entorno para aprender con el pasar del tiempo la mejor accion a tomar en un estado dado.</p>
+<p>En el entorno del taxi tenemos la tabla de recompensas P de la que el agente aprenderá. Buscará recibir una recompensa por tomar una acción en el estado actual y luego actualizará el Q-value para recordar si esa acción fue beneficiosa.</p>
+<p>Los valores almacenados en la tabla se denominan Q-values y se asignan a una combinación (estado, acción).</p>
+<p>Un Q-value para una combinación particular de estado-acción es representativo de la «calidad» de una acción tomada en ese estado. Los mejores Q-values implican mejores posibilidades de obtener mayores recompensas.</p>
+<p>Por ejemplo, si el taxi se enfrenta a un estado que incluye a un pasajero en su ubicación actual, es muy probable que el Q-values para la recogida sea más alto en comparación con otras acciones, como el descenso o el norte.</p>
+<p>Los Q-values se inicializan a un valor arbitrario, y a medida que el agente se expone al entorno y recibe diferentes recompensas al ejecutar diferentes acciones, los Q-value se actualizan utilizando la ecuación:</p>
+<div class="math notranslate nohighlight">
+\[ Q({\small state}, {\small action}) \leftarrow (1 - \alpha) Q({\small state}, {\small action}) + \alpha \Big({\small reward} + \gamma \max_{a} Q({\small next \ state}, {\small a})\Big)\]</div>
+<p>donde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> es el learning rate <span class="math notranslate nohighlight">\((0 &lt; \alpha \le 1)\)</span>,  el grado en que los Q-values se actualizan en cada iteración.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> es el factor de descuento <span class="math notranslate nohighlight">\((0\le \gamma \le 1)\)</span>, determina cuánta importancia queremos dar a futuras recompensas. Un valor alto para el factor de descuento (cercano a 1) genera la adjudicación efectiva a largo plazo, mientras que un factor de descuento de 0 hace que nuestro agente considere solo una recompensa inmediata.</p></li>
+</ul>
+<p>Se le asigna, o actualiza, el Q-value para un estado y  una acción primero tomando los pesos (1−α) de los viejos Q-value, y luego se le suma el resultado aprendido.</p>
+<p>El valor aprendido es una combinación de la recompensa por tomar la acción actual en el estado actual y la recompensa máxima, con descuento, del siguiente estado en el que estaremos una vez que tomemos la acción actual.</p>
+<p>Básicamente, estamos aprendiendo la acción adecuada para tomar en el estado actual al observar la recompensa para el par estado - acción actual, y las recompensas máximas para el siguiente estado. Esto eventualmente hará que nuestro taxi considere la ruta con las mejores recompensas.</p>
+<p>El  Q-value de un par  estado-acción es la suma de la recompensa instantánea y la recompensa futura con descuento (del estado resultante). La forma en que almacenamos los  Q-value para cada estado y acción es a través de una
+Q-table</p>
+<p>La  Q-table es una matriz donde tenemos una fila para cada estado (500) y una columna para cada acción (6). Primero se inicializa a 0, y luego los valores se actualizan con el entrenamiento.</p>
+<p>Tenga en cuenta que la Q-table tiene las mismas dimensiones que la tabla de recompensas, pero tiene un propósito completamente diferente.</p>
+</section>
+<section id="resumiendo-el-proceso-de-q-learning">
+<h2>Resumiendo el proceso de Q-Learning<a class="headerlink" href="#resumiendo-el-proceso-de-q-learning" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Inicializar la  Q-table con cero.</p></li>
+<li><p>Comenzar explorando acciones: para cada estado, seleccionar una de todas las posibles acciones para el estado actual (S).</p></li>
+<li><p>Cambiar al nuevo estado (S”) como resultado de la acción (a).</p></li>
+<li><p>Para cada acción posible desde el estado (S”) seleccionar la que tenga el mayor Q-value.</p></li>
+<li><p>Actualizar los valores de  Q-table utilizando la ecuación.</p></li>
+<li><p>Setear el próximo estado como estado siguiente.</p></li>
+<li><p>Si se alcanza el estado objetivo, luego se repite el proceso.</p></li>
+</ul>
+<section id="aprovechar-los-valores-aprendidos">
+<h3>Aprovechar los valores aprendidos<a class="headerlink" href="#aprovechar-los-valores-aprendidos" title="Link to this heading">#</a></h3>
+<p>Después de una exploración aleatoria de acciones los  Q-values tienden a converger sirviendo al agente como una función de valor-acción que puede aprovechar para elegir la mejor acción de un estado dado.</p>
+<p>Existe una compensación entre la exploración (elegir una acción aleatoria) y la explosión (elegir acciones basadas en Q-values ya aprendidos). Queremos evitar que la acción tome siempre la misma ruta y posiblemente se sobreajuste, por lo que presentaremos otro parámetro llamado <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<p>En lugar de simplemente seleccionar la mejor acción de Q-values, a veces favoreceremos explorar más el espacio de acción. Un valor más bajo de épsilon produce episodios con más penalizaciones (en promedio), lo cual es esperable porque estamos explorando y tomando decisiones aleatorias.</p>
+</section>
+</section>
+<section id="implementar-q-learning">
+<h2>Implementar Q-learning<a class="headerlink" href="#implementar-q-learning" title="Link to this heading">#</a></h2>
+<section id="entrenando-el-agente">
+<h3>Entrenando el agente<a class="headerlink" href="#entrenando-el-agente" title="Link to this heading">#</a></h3>
+<p>Primero se inicializa con cero la Q-table a una matriz de 500 x 6.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora se crea el algoritmo de entrenamiento que actualizará esta Q-table mientras el agente explora el entorno durante muchos episodios.</p>
+<p>En la primera parte de «while not done» se decide si se elige una acción aleatoria o aprovechar los Q-values ya calculados. Esto se hace simplemente usando el valor épsilon y comparándolo con la función random.uniform(0, 1), que devuelve un número arbitrario entre 0 y 1.</p>
+<p>Ejecutamos la acción elegida en el entorno para obtener el siguiente estado (naxe_state) y la recompensa (reward) de realizar la acción. Después de eso, calculamos el valor Q-value para las acciones correspondientes a next_state, y con eso, podemos actualizar fácilmente nuestro Q-value a new_q_value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="sd">&quot;&quot;&quot;Training the agent&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="c1"># Hyperparameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># For plotting metrics</span>
+<span class="n">all_epochs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_penalties</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10000</span><span class="p">):</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">epochs</span><span class="p">,</span> <span class="n">penalties</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">truncated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">truncated</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span> <span class="c1"># Explore action space</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span> <span class="c1"># Exploit learned values</span>
+
+        <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+        <span class="n">old_value</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+        <span class="n">next_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">next_state</span><span class="p">])</span>
+
+        <span class="n">new_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">old_value</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">next_max</span><span class="p">)</span>
+        <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="mi">10</span><span class="p">:</span>
+            <span class="n">penalties</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="n">epochs</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Episode: &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training finished.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora que la Q-table se ha establecido en más de 100,000 episodios, veamos cuáles son los Q-values en el estado de nuestra ilustración:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_table</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="evaluar-al-agente">
+<h2>Evaluar al agente<a class="headerlink" href="#evaluar-al-agente" title="Link to this heading">#</a></h2>
+<p>Vamos a evaluar el desempeño del agente. No necesitamos explorar más acciones, por lo que ahora la siguiente acción siempre se selecciona utilizando el mejor Q-value:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Evaluate agent&#39;s performance after Q-learning&quot;&quot;&quot;</span>
+
+<span class="n">total_epochs</span><span class="p">,</span> <span class="n">total_penalties</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">episodes</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">episodes</span><span class="p">):</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">)</span>
+    <span class="n">epochs</span><span class="p">,</span> <span class="n">penalties</span><span class="p">,</span> <span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+    <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">truncated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">truncated</span><span class="p">:</span>
+        <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="mi">10</span><span class="p">:</span>
+            <span class="n">penalties</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">epochs</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">total_penalties</span> <span class="o">+=</span> <span class="n">penalties</span>
+    <span class="n">total_epochs</span> <span class="o">+=</span> <span class="n">epochs</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Results after &#39;</span><span class="p">,</span><span class="n">episodes</span><span class="p">,</span> <span class="s1">&#39;episodes:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average timesteps per episode: &#39;</span><span class="p">,</span><span class="n">total_epochs</span> <span class="o">/</span> <span class="n">episodes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Average penalties per episode: &#39;</span><span class="p">,</span><span class="n">total_penalties</span> <span class="o">/</span> <span class="n">episodes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hiperparametros-y-optimizaciones">
+<h2>Hiperparámetros y  optimizaciones<a class="headerlink" href="#hiperparametros-y-optimizaciones" title="Link to this heading">#</a></h2>
+<p>Los valores de <code class="docutils literal notranslate"><span class="pre">alpha</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, y <code class="docutils literal notranslate"><span class="pre">epsilon</span></code> estan basados en la intución y en algunos «hit and trial», pero hay mejores formas de encontrar buenos valores.</p>
+<p>Idealmente los tres deberían disminuir con el tiempo dado que a medida que el agente continúa aprendiendo, en realidad acumula antecedentes más resistentes:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> debería disminuir a medida que continua obteniendo una base de conocimiento cada vez mayor.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gamma\)</span> a medida que se acerque más y más al límite, su preferencia por la recompensa a corto plazo debería aumentar, ya que no estará lo suficientemente cerca como para obtener la recompensa a largo plazo, lo que significa que su gama debería disminuir.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> a medida que se desarrolla la estrategia, se tiene menos necesidad de exploración y más explotación para obtener más utilidad de la política, por lo que a medida que aumentan los ensayos, epsilon debería disminuir.</p></li>
+</ul>
+</section>
+<section id="tuneando-los-hiperparametros">
+<h2>Tuneando los  hiperparámetros<a class="headerlink" href="#tuneando-los-hiperparametros" title="Link to this heading">#</a></h2>
+<p>Modifique los hiperparametros analizando que significa cada uno y como varían los resultados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="sd">&quot;&quot;&quot;Training the agent&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="c1"># Hyperparameters</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="c1"># For plotting metrics</span>
+<span class="n">all_epochs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">all_penalties</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10001</span><span class="p">):</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+    <span class="n">epochs</span><span class="p">,</span> <span class="n">penalties</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">terminated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">truncated</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">terminated</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">truncated</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span> <span class="c1"># Explore action space</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span> <span class="c1"># Exploit learned values</span>
+
+        <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">terminated</span><span class="p">,</span> <span class="n">truncated</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="n">old_value</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+        <span class="n">next_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">next_state</span><span class="p">])</span>
+
+        <span class="n">new_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">old_value</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">next_max</span><span class="p">)</span>
+        <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="mi">10</span><span class="p">:</span>
+            <span class="n">penalties</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="n">epochs</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Episode: &#39;</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training finished.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_table</span><span class="p">[</span><span class="n">starting_state</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../S8-aprendizaje-refuerzo.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Introducción</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Práctico 5: Taxi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vamos-a-utilizar-el-problema-del-taxi-autonomo-introducido-por-dietterich2000">Vamos a utilizar el problema del taxi autonomo introducido por [Dietterich2000].</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#aprendizaje-por-refuerzo">Aprendizaje por refuerzo</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">Implementación:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-tabla-de-recompensas">La tabla de recompensas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolviendo-el-entorno-sin-aprendizaje-por-refuerzo">Resolviendo el entorno sin aprendizaje por refuerzo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizando-aprendizaje-por-refuerzo">Utilizando aprendizaje por refuerzo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumiendo-el-proceso-de-q-learning">Resumiendo el proceso de Q-Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aprovechar-los-valores-aprendidos">Aprovechar los valores aprendidos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementar-q-learning">Implementar Q-learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entrenando-el-agente">Entrenando el agente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluar-al-agente">Evaluar al agente</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-y-optimizaciones">Hiperparámetros y  optimizaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuneando-los-hiperparametros">Tuneando los  hiperparámetros</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Maestría en Ciencias Cognitivas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
