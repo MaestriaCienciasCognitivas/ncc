@@ -25,7 +25,14 @@ parts:
     chapters:
     - file: notebooks/S5_Cuaderno5
     - file: notebooks/S5_Practico4
+  - caption: Redes biológicas
+    chapters:
+    - file: notebooks/S7_Cuaderno6
   - caption: Aprendizaje por refuerzo
     chapters:
     - file: S8-aprendizaje-refuerzo
     - file: notebooks/S8_Practico5
+  - caption: Campos receptivos
+    chapters:
+    - file: S9-campos-receptivos
+    - file: notebooks/S9_Practico6
