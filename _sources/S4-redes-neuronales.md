@@ -2,7 +2,7 @@
 
 ## Teórico
 
-- [Link al teórico](https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/slides/s4-redes-neuronales.pdf)
+- [Link al teórico](https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/slides/S4-redes-neuronales.pdf)
 
 ## Lecturas recomendadas
 

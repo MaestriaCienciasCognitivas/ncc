@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=78d55cf8"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -51,7 +54,7 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
-    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script src="../_static/translations.js?v=efdbd0b9"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
@@ -63,10 +66,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Cuaderno2';</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Introducción" href="../W2-modelos-neuronas.html" />
+    <link rel="next" title="Introducción" href="../S2-modelos-neuronas.html" />
     <link rel="prev" title="Cuaderno 1: Introducción a Python" href="Cuaderno1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -74,27 +78,16 @@
 
   
   
-  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -102,7 +95,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -110,11 +102,11 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
-  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
@@ -127,7 +119,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -157,21 +150,17 @@
     
     
     <img src="../_static/logo.png" class="logo__image only-light" alt="Neurociencia Cognitiva y Computacional - Home"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Neurociencia Cognitiva y Computacional - Home"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Neurociencia Cognitiva y Computacional - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Búsqueda</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -189,7 +178,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../W2-modelos-neuronas.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
 <li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
@@ -202,6 +191,27 @@
 <li class="toctree-l1"><a class="reference internal" href="S4_Cuaderno4.html">Cuaderno 4: Regla de Oja</a></li>
 <li class="toctree-l1"><a class="reference internal" href="S4_Practico3.html">Práctico 3: Modelos de memorias matriciales</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje supervisado</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S5_Cuaderno5.html">Cuaderno 5: Perceptrones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S5_Practico4.html">Práctico 4: Redes convolucionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes biológicas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S7_Cuaderno6.html">Cuaderno 6: Convoluciones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje por refuerzo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S8-aprendizaje-refuerzo.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S8_Practico5.html">Práctico 5: Taxi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Campos receptivos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S9-campos-receptivos.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
+
+</ul>
 
     </div>
 </nav></div>
@@ -209,9 +219,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -288,7 +303,7 @@
       
       <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
-   title="Repositorio de origen"
+   title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -305,7 +320,7 @@
       
       <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Cuaderno2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Abrir un problema"
+   title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -326,7 +341,7 @@
 
 
 <div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
   </button>
   <ul class="dropdown-menu">
@@ -335,7 +350,7 @@
       
       <li><a href="../_sources/notebooks/Cuaderno2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Descargar archivo fuente"
+   title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -353,7 +368,7 @@
       <li>
 <button onclick="window.print()"
   class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimir en PDF"
+  title="Print to PDF"
   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
@@ -373,7 +388,7 @@
 
 <button onclick="toggleFullScreen()"
   class="btn btn-sm btn-fullscreen-button"
-  title="Modo de pantalla completa"
+  title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
@@ -386,24 +401,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -423,7 +430,7 @@ document.write(`
         <div id="jb-print-toc">
             
             <div>
-                <h2> Contenido </h2>
+                <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
@@ -790,7 +797,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e32a5ba13badefc22cd517d2e70c3663b0cfdb3e700b9243554447152de98d12.png" src="../_images/e32a5ba13badefc22cd517d2e70c3663b0cfdb3e700b9243554447152de98d12.png" />
+<img alt="../_images/fd5dcbdac0aa4b397e23afc09667fe1e94e472598514888835ab38df4e69920c.png" src="../_images/fd5dcbdac0aa4b397e23afc09667fe1e94e472598514888835ab38df4e69920c.png" />
 </div>
 </div>
 <p>La sintaxis observada más arriba es la general para hacer un gráfico con Matplotlib. Notar que debemos pedirle, con <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a> que nos muestre el gráfico.</p>
@@ -813,7 +820,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5df8371d1671b5f854b72047e062d7af9ca4ebad9bfac20e6b6407e2347ddcd6.png" src="../_images/5df8371d1671b5f854b72047e062d7af9ca4ebad9bfac20e6b6407e2347ddcd6.png" />
+<img alt="../_images/913b3dff29584710e92799a88fbfd302120d332f74b78b2b778eb8b3af73d2b6.png" src="../_images/913b3dff29584710e92799a88fbfd302120d332f74b78b2b778eb8b3af73d2b6.png" />
 </div>
 </div>
 <p>Otro método que puede resultar de utilidad es el método <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a> que nos permite definir a la figura y sus caracteristicas como el tamaño. Esto puede ser especialmente relevante cuando querramos posteriormente exportar una figura generada en Python.</p>
@@ -834,7 +841,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/be6bb986fa3f0aa4005e6ed6bdc065291d58b12254ae368ebdb9c4b80ddb8fef.png" src="../_images/be6bb986fa3f0aa4005e6ed6bdc065291d58b12254ae368ebdb9c4b80ddb8fef.png" />
+<img alt="../_images/8689d0c77a9fe7cd401b5acc6879adce6076ff91a6900911afbd6a34e3250869.png" src="../_images/8689d0c77a9fe7cd401b5acc6879adce6076ff91a6900911afbd6a34e3250869.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 10000x12000 with 0 Axes&gt;
 </pre></div>
 </div>
@@ -864,7 +871,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3ff44efb94c1a44a135930230cfa91a40a32fa494e4d0d606978701d17fe2f26.png" src="../_images/3ff44efb94c1a44a135930230cfa91a40a32fa494e4d0d606978701d17fe2f26.png" />
+<img alt="../_images/e0a3d380530edc71585ac2508276215a5088e7a5263b6bad066d6fd6039079ed.png" src="../_images/e0a3d380530edc71585ac2508276215a5088e7a5263b6bad066d6fd6039079ed.png" />
 </div>
 </div>
 <section id="definir-una-figura">
@@ -888,7 +895,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5df8371d1671b5f854b72047e062d7af9ca4ebad9bfac20e6b6407e2347ddcd6.png" src="../_images/5df8371d1671b5f854b72047e062d7af9ca4ebad9bfac20e6b6407e2347ddcd6.png" />
+<img alt="../_images/913b3dff29584710e92799a88fbfd302120d332f74b78b2b778eb8b3af73d2b6.png" src="../_images/913b3dff29584710e92799a88fbfd302120d332f74b78b2b778eb8b3af73d2b6.png" />
 </div>
 </div>
 <p>En el código propuesto, podriamos dar como argumento a <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html"><code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code></a> dimensiones para generar mas de una <code class="docutils literal notranslate"><span class="pre">subplot</span></code>.</p>
@@ -914,7 +921,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1f9b9b0012bd5a9a7f54f4718d928d23972c6eeeddb573229b6e12cb72f43f9e.png" src="../_images/1f9b9b0012bd5a9a7f54f4718d928d23972c6eeeddb573229b6e12cb72f43f9e.png" />
+<img alt="../_images/4bd31b308d1cf15f1bc90b416121537b9683202a5514255e7ebe80a0149c70de.png" src="../_images/4bd31b308d1cf15f1bc90b416121537b9683202a5514255e7ebe80a0149c70de.png" />
 </div>
 </div>
 </section>
@@ -940,7 +947,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9abd49643909507a31d24ef36b1c640640455fadfa614f07018980711f1adb8a.png" src="../_images/9abd49643909507a31d24ef36b1c640640455fadfa614f07018980711f1adb8a.png" />
+<img alt="../_images/9549e564bb50ce3dd56e35ec7b6dc344364a398fc5d85f5fe33cc88145d00483.png" src="../_images/9549e564bb50ce3dd56e35ec7b6dc344364a398fc5d85f5fe33cc88145d00483.png" />
 </div>
 </div>
 <p>Cambiemos ahora la forma de los puntos en nuestro gráfico de dispersión. De forma similar a lo que vimos para el color, hay un parámetro <code class="docutils literal notranslate"><span class="pre">marker</span></code> que tiene la función <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html"><code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code></a> asi como la función <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html"><code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code></a>. Puede consultar <a class="reference external" href="https://matplotlib.org/stable/api/markers_api.html">aquí</a> los diferentes códigos para los diferentes puntos que puede usar.</p>
@@ -961,7 +968,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a3f405890a374f2e69a50de8711feaba0c656ac669c3d4777bc7b4be07cf6c13.png" src="../_images/a3f405890a374f2e69a50de8711feaba0c656ac669c3d4777bc7b4be07cf6c13.png" />
+<img alt="../_images/e2853e36f9cb731ae1469eec744445a2aea74a8f8c5e90e046b1fe3e314e01d8.png" src="../_images/e2853e36f9cb731ae1469eec744445a2aea74a8f8c5e90e046b1fe3e314e01d8.png" />
 </div>
 </div>
 <p>El úlimo ejemplo de personalización que veremos es la opacidad de nuestro gráfico. Esto es especialmente relevante en graficos de dispersion donde se acumulan muchos puntos juntos. Esta se setea con el argumento `alpha que va desde 0 a 1, siendo 1 el color normal y 0 completamente transparente.</p>
@@ -983,7 +990,7 @@ Ellipsis
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bab92f7247932b642a048a2caafbad54897e7f7e652d9c741029eb2b204b4063.png" src="../_images/bab92f7247932b642a048a2caafbad54897e7f7e652d9c741029eb2b204b4063.png" />
+<img alt="../_images/ef237ef2df8b374fef719f437a128d168be73d631cd492723d39868020fdf304.png" src="../_images/ef237ef2df8b374fef719f437a128d168be73d631cd492723d39868020fdf304.png" />
 </div>
 </div>
 <p>Alli se puede ver claramente el efecto de modificar el parámetro <code class="docutils literal notranslate"><span class="pre">alpha</span></code>. De paso vimos como generar dos subplots en una misma figura con la sintaxis que venimos trabajando.</p>
@@ -1024,16 +1031,14 @@ Ellipsis
 <h2>Bonificación: Ejercicios adicionales<a class="headerlink" href="#bonificacion-ejercicios-adicionales" title="Link to this heading">#</a></h2>
 <section id="ejercicio-adicional-1-manipulacion-y-visualizacion-de-una-imagen">
 <h3>Ejercicio adicional 1: Manipulación y visualización de una imagen<a class="headerlink" href="#ejercicio-adicional-1-manipulacion-y-visualizacion-de-una-imagen" title="Link to this heading">#</a></h3>
-<p>En este ejercicio importaremos una imagen usando el paquete <a class="reference external" href="https://scikit-image.org">skimage</a> la cual visualizaremos usando una función integrada de Matplotlib <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html"><code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code></a>. Para esto debemos leer la imagen como una matriz de NumPy.</p>
+<p>En este ejercicio importaremos una imagen usando el paquete <a class="reference external" href="https://imageio.readthedocs.io">imageio</a> la cual visualizaremos usando una función integrada de Matplotlib <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html"><code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code></a>. Para esto debemos leer la imagen como una matriz de NumPy.</p>
 <p>Usando manipulaciones básicas de matrices podremos modificar esta imagen de diferentes maneras, como rotarla y espejarla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El siguiente código carga la imagen desde el paquete skimage.io</span>
-<span class="c1"># Esta sintaxis permite cargar solamente un subpaquete (en este caso `io`) desde una libreria más grande (en este caso skimage)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">imageio.v3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">iio</span>
 
-<span class="c1"># Cargamos la imagen desde el URL</span>
-<span class="n">imagen</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg&#39;</span><span class="p">)</span>
+<span class="c1"># Cargamos la imagen desde la URL</span>
+<span class="n">imagen</span> <span class="o">=</span> <span class="n">iio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1060,14 +1065,12 @@ Ellipsis
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imagen</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x1e8f287b0a0&gt;
-</pre></div>
-</div>
-<img alt="../_images/579a78df2969930ce0079509eac87c64d584e131f704193d8973f3205900363a.png" src="../_images/579a78df2969930ce0079509eac87c64d584e131f704193d8973f3205900363a.png" />
+<img alt="../_images/04ddaa7bb64edf2df0221f401fa0f256826ef65934673f8ed1ec853b701778c1.png" src="../_images/04ddaa7bb64edf2df0221f401fa0f256826ef65934673f8ed1ec853b701778c1.png" />
 </div>
 </div>
 <p>A continuación genere una nueva matriz seleccionando diferentes regiones de la imagen usando lo que aprendió anteriormente para acceder a elementos de una matriz.</p>
@@ -1254,7 +1257,7 @@ Ellipsis
 <div class="prev-next-area">
     <a class="left-prev"
        href="Cuaderno1.html"
-       title="página anterior">
+       title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
@@ -1262,8 +1265,8 @@ Ellipsis
       </div>
     </a>
     <a class="right-next"
-       href="../W2-modelos-neuronas.html"
-       title="siguiente página">
+       href="../S2-modelos-neuronas.html"
+       title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
         <p class="prev-next-title">Introducción</p>
@@ -1277,12 +1280,13 @@ Ellipsis
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenido
+    <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
@@ -1320,7 +1324,7 @@ Ellipsis
   <div class="footer-item">
     
 <p class="component-author">
-Por Maestría en Ciencias Cognitivas
+By Maestría en Ciencias Cognitivas
 </p>
 
   </div>
@@ -1354,8 +1358,8 @@ Por Maestría en Ciencias Cognitivas
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
