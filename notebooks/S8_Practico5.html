@@ -212,6 +212,11 @@
 <li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control motor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S10-control-motor.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S10_Practico7.html">Práctico 7: Generadores centrales de patrones (CPGs)</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -578,12 +583,7 @@ State Space Discrete(500)
 </div>
 </div>
 </div>
-<p>Según lo verificado por las</p>
-<ul class="simple">
-<li><p>List item</p></li>
-<li><p>List item</p></li>
-</ul>
-<p>impresiones, tenemos un espacio de acción de tamaño 6 y un espacio de estado de tamaño 500:</p>
+<p>Según lo verificado por las impresiones, tenemos un espacio de acción de tamaño 6 y un espacio de estado de tamaño 500:</p>
 <p>25 plazas, 5 ubicación para el pasajero (contando las cuatro estaciones y el taxi) y los 4 destinos -&gt; 25 x 5 x 4 = 500.</p>
 <ul class="simple">
 <li><p>El rectángulo de color representa el taxi,  amarillo es cuando va sin pasajero y verde con un pasajero.</p></li>
@@ -704,8 +704,8 @@ State Space Discrete(500)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 3546
-Penalties incurred: 1121
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 1124
+Penalties incurred: 363
 </pre></div>
 </div>
 </div>
@@ -736,7 +736,7 @@ Penalties incurred: 1121
 +---------+
   (Dropoff)
 
-Timestep:  3546
+Timestep:  1124
 State:  0
 Action:  5
 Reward:  20
@@ -783,7 +783,7 @@ Q-table</p>
 <section id="aprovechar-los-valores-aprendidos">
 <h3>Aprovechar los valores aprendidos<a class="headerlink" href="#aprovechar-los-valores-aprendidos" title="Link to this heading">#</a></h3>
 <p>Después de una exploración aleatoria de acciones los  Q-values tienden a converger sirviendo al agente como una función de valor-acción que puede aprovechar para elegir la mejor acción de un estado dado.</p>
-<p>Existe una compensación entre la exploración (elegir una acción aleatoria) y la explosión (elegir acciones basadas en Q-values ya aprendidos). Queremos evitar que la acción tome siempre la misma ruta y posiblemente se sobreajuste, por lo que presentaremos otro parámetro llamado <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<p>Existe una compensación entre la exploración (elegir una acción aleatoria) y la explotación (elegir acciones basadas en Q-values ya aprendidos). Queremos evitar que la acción tome siempre la misma ruta y posiblemente se sobreajuste, por lo que presentaremos otro parámetro llamado <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
 <p>En lugar de simplemente seleccionar la mejor acción de Q-values, a veces favoreceremos explorar más el espacio de acción. Un valor más bajo de épsilon produce episodios con más penalizaciones (en promedio), lo cual es esperable porque estamos explorando y tomando decisiones aleatorias.</p>
 </section>
 </section>
@@ -853,12 +853,10 @@ Q-table</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  9900
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training finished.
+Training finished.
 
-CPU times: user 1.92 s, sys: 508 ms, total: 2.43 s
-Wall time: 2.03 s
+CPU times: user 2.08 s, sys: 682 ms, total: 2.76 s
+Wall time: 2.2 s
 </pre></div>
 </div>
 </div>
@@ -878,8 +876,8 @@ Wall time: 2.03 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.93056605, -2.18292776,  2.75200369, -1.44709626, -6.9000491 ,
-       -7.60440163])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.53932631, -3.16289725,  2.75200369, -2.49576243, -6.57114286,
+       -6.73409901])
 </pre></div>
 </div>
 </div>
@@ -996,8 +994,8 @@ Average penalties per episode:  0.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  10000
 Training finished.
 
-CPU times: user 1.35 s, sys: 415 ms, total: 1.77 s
-Wall time: 1.45 s
+CPU times: user 1.4 s, sys: 442 ms, total: 1.84 s
+Wall time: 1.48 s
 </pre></div>
 </div>
 </div>
@@ -1009,8 +1007,8 @@ Wall time: 1.45 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.95756244, -1.09386885,  2.75200369, -0.02574733, -7.24846357,
-       -7.46188913])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.93612766, -0.81049162,  2.75200369, -0.77039373, -6.85123346,
+       -7.13319302])
 </pre></div>
 </div>
 </div>
