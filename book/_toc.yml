@@ -36,3 +36,7 @@ parts:
     chapters:
     - file: S9-campos-receptivos
     - file: notebooks/S9_Practico6
+  - caption: Control motor 
+    chapters:
+    - file: S10-control-motor
+    - file: notebooks/S10_Practico7
