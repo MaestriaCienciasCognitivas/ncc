@@ -40,3 +40,8 @@ parts:
     chapters:
     - file: S10-control-motor
     - file: notebooks/S10_Practico7
+  - caption: Oscilaciones
+    chapters:
+    - file: S11-oscilaciones
+    - file: notebooks/S11_Cuaderno7
+    - file: notebooks/S11_Practico8
