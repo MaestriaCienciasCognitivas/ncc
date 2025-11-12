@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S8_Practico5';</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Introducción" href="../S9-campos-receptivos.html" />
     <link rel="prev" title="Introducción" href="../S8-aprendizaje-refuerzo.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -215,6 +216,27 @@
 <li class="toctree-l1"><a class="reference internal" href="../S8-aprendizaje-refuerzo.html">Introducción</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Práctico 5: Taxi</a></li>
 
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Campos receptivos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S9-campos-receptivos.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control motor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S10-control-motor.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S10_Practico7.html">Práctico 7: Generadores centrales de patrones (CPGs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Oscilaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S11-oscilaciones.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Cuaderno7.html">Cuaderno 7: Densidad Espectral de Potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Practico8.html">Práctico 8: Exploración de una oscilación neural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S12_Practico9.html">Práctico 9: Redes atencionales</a></li>
 </ul>
 
     </div>
@@ -706,8 +728,8 @@ State Space Discrete(500)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 842
-Penalties incurred: 278
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 2152
+Penalties incurred: 640
 </pre></div>
 </div>
 </div>
@@ -738,7 +760,7 @@ Penalties incurred: 278
 +---------+
   (Dropoff)
 
-Timestep:  842
+Timestep:  2152
 State:  0
 Action:  5
 Reward:  20
@@ -785,7 +807,7 @@ Q-table</p>
 <section id="aprovechar-los-valores-aprendidos">
 <h3>Aprovechar los valores aprendidos<a class="headerlink" href="#aprovechar-los-valores-aprendidos" title="Link to this heading">#</a></h3>
 <p>Después de una exploración aleatoria de acciones los  Q-values tienden a converger sirviendo al agente como una función de valor-acción que puede aprovechar para elegir la mejor acción de un estado dado.</p>
-<p>Existe una compensación entre la exploración (elegir una acción aleatoria) y la explosión (elegir acciones basadas en Q-values ya aprendidos). Queremos evitar que la acción tome siempre la misma ruta y posiblemente se sobreajuste, por lo que presentaremos otro parámetro llamado <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<p>Existe una compensación entre la exploración (elegir una acción aleatoria) y la explotación (elegir acciones basadas en Q-values ya aprendidos). Queremos evitar que la acción tome siempre la misma ruta y posiblemente se sobreajuste, por lo que presentaremos otro parámetro llamado <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
 <p>En lugar de simplemente seleccionar la mejor acción de Q-values, a veces favoreceremos explorar más el espacio de acción. Un valor más bajo de épsilon produce episodios con más penalizaciones (en promedio), lo cual es esperable porque estamos explorando y tomando decisiones aleatorias.</p>
 </section>
 </section>
@@ -857,8 +879,8 @@ Q-table</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  9900
 Training finished.
 
-CPU times: user 2.41 s, sys: 171 ms, total: 2.58 s
-Wall time: 2.46 s
+CPU times: user 2.4 s, sys: 209 ms, total: 2.61 s
+Wall time: 2.47 s
 </pre></div>
 </div>
 </div>
@@ -878,8 +900,8 @@ Wall time: 2.46 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-4.67249925, -2.49189743,  2.75200369, -4.09948065, -6.70674231,
-       -7.31229464])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.42990164, -1.88712558,  2.75200369, -2.08419411, -7.00954682,
+       -7.61110895])
 </pre></div>
 </div>
 </div>
@@ -996,8 +1018,8 @@ Average penalties per episode:  0.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  10000
 Training finished.
 
-CPU times: user 1.65 s, sys: 143 ms, total: 1.79 s
-Wall time: 1.69 s
+CPU times: user 1.63 s, sys: 157 ms, total: 1.78 s
+Wall time: 1.68 s
 </pre></div>
 </div>
 </div>
@@ -1009,8 +1031,8 @@ Wall time: 1.69 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.70740756, -0.24972651,  2.75200369, -2.20215367, -7.24582644,
-       -7.34664088])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.21630498, -0.50923227,  2.75200369, -0.85756408, -7.27938896,
+       -7.47296464])
 </pre></div>
 </div>
 </div>
@@ -1056,6 +1078,15 @@ Wall time: 1.69 s
         <p class="prev-next-subtitle">anterior</p>
         <p class="prev-next-title">Introducción</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../S9-campos-receptivos.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Introducción</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

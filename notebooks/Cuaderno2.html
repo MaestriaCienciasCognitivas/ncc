@@ -217,6 +217,27 @@
 <li class="toctree-l1"><a class="reference internal" href="S8_Practico5.html">Práctico 5: Taxi</a></li>
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Campos receptivos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S9-campos-receptivos.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control motor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S10-control-motor.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S10_Practico7.html">Práctico 7: Generadores centrales de patrones (CPGs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Oscilaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S11-oscilaciones.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Cuaderno7.html">Cuaderno 7: Densidad Espectral de Potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Practico8.html">Práctico 8: Exploración de una oscilación neural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S12_Practico9.html">Práctico 9: Redes atencionales</a></li>
+</ul>
 
     </div>
 </nav></div>
@@ -1039,16 +1060,14 @@ Ellipsis
 <h2>Bonificación: Ejercicios adicionales<a class="headerlink" href="#bonificacion-ejercicios-adicionales" title="Link to this heading">#</a></h2>
 <section id="ejercicio-adicional-1-manipulacion-y-visualizacion-de-una-imagen">
 <h3>Ejercicio adicional 1: Manipulación y visualización de una imagen<a class="headerlink" href="#ejercicio-adicional-1-manipulacion-y-visualizacion-de-una-imagen" title="Link to this heading">#</a></h3>
-<p>En este ejercicio importaremos una imagen usando el paquete <a class="reference external" href="https://scikit-image.org">skimage</a> la cual visualizaremos usando una función integrada de Matplotlib <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html"><code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code></a>. Para esto debemos leer la imagen como una matriz de NumPy.</p>
+<p>En este ejercicio importaremos una imagen usando el paquete <a class="reference external" href="https://imageio.readthedocs.io">imageio</a> la cual visualizaremos usando una función integrada de Matplotlib <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imshow.html"><code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code></a>. Para esto debemos leer la imagen como una matriz de NumPy.</p>
 <p>Usando manipulaciones básicas de matrices podremos modificar esta imagen de diferentes maneras, como rotarla y espejarla.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># El siguiente código carga la imagen desde el paquete skimage.io</span>
-<span class="c1"># Esta sintaxis permite cargar solamente un subpaquete (en este caso `io`) desde una libreria más grande (en este caso skimage)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">skimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">imageio.v3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">iio</span>
 
-<span class="c1"># Cargamos la imagen desde el URL</span>
-<span class="n">imagen</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg&#39;</span><span class="p">)</span>
+<span class="c1"># Cargamos la imagen desde la URL</span>
+<span class="n">imagen</span> <span class="o">=</span> <span class="n">iio</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1075,13 +1094,11 @@ Ellipsis
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">imagen</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x11f9e3040&gt;
-</pre></div>
-</div>
 <img alt="../_images/04ddaa7bb64edf2df0221f401fa0f256826ef65934673f8ed1ec853b701778c1.png" src="../_images/04ddaa7bb64edf2df0221f401fa0f256826ef65934673f8ed1ec853b701778c1.png" />
 </div>
 </div>

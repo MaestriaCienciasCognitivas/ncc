@@ -1,0 +1,1109 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Práctico 9: Redes atencionales &#8212; Neurociencia Cognitiva y Computacional</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S12_Practico9';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="prev" title="Práctico 8: Exploración de una oscilación neural" href="S11_Practico8.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Neurociencia Cognitiva y Computacional - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Neurociencia Cognitiva y Computacional - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="W3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S4-redes-neuronales.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Cuaderno4.html">Cuaderno 4: Regla de Oja</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Practico3.html">Práctico 3: Modelos de memorias matriciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje supervisado</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S5_Cuaderno5.html">Cuaderno 5: Perceptrones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S5_Practico4.html">Práctico 4: Redes convolucionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes biológicas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S7_Cuaderno6.html">Cuaderno 6: Convoluciones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje por refuerzo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S8-aprendizaje-refuerzo.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S8_Practico5.html">Práctico 5: Taxi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Campos receptivos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S9-campos-receptivos.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control motor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S10-control-motor.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S10_Practico7.html">Práctico 7: Generadores centrales de patrones (CPGs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Oscilaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S11-oscilaciones.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Cuaderno7.html">Cuaderno 7: Densidad Espectral de Potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Practico8.html">Práctico 8: Exploración de una oscilación neural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Práctico 9: Redes atencionales</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/MaestriaCienciasCognitivas/ncc/blob/main/book/notebooks/S12_Practico9.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc/issues/new?title=Issue%20on%20page%20%2Fnotebooks/S12_Practico9.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/S12_Practico9.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Práctico 9: Redes atencionales</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-utilitarias">Funciones utilitarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-la-tarea">Ejecución de la tarea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-los-datos">Exploración de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-preliminares">Análisis preliminares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aciertos-por-pista"><code class="docutils literal notranslate"><span class="pre">aciertos_por_pista</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-de-respuesta-por-congruencia"><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_congruencia</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-de-respuesta-por-pista"><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_pista</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-los-tiempos-de-reaccion">Visualización de los tiempos de reacción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-porcentaje-de-errores">Visualización del porcentaje de errores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-los-efectos-de-las-redes-atencionales">Cálculo de los efectos de las redes atencionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-alerta">Efecto de «alerta»</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-orientacion">Efecto de «orientación»</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-conflicto">Efecto de «conflicto»</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-varios-archivos-de-datos">Cargar varios archivos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="practico-9-redes-atencionales">
+<h1>Práctico 9: Redes atencionales<a class="headerlink" href="#practico-9-redes-atencionales" title="Link to this heading">#</a></h1>
+<p>La Tarea de Redes Atencionales (ANT, por sus siglas en inglés) es una tarea experimental utilizada para evaluar el funcionamiento de las redes atencionales en el cerebro. Este paradigma, desarrollado por <a class="reference external" href="https://doi.org/10.1162/089892902317361886">Fan et al. (2002)</a>, permite analizar tres tipos funcionales de la atención:</p>
+<ul class="simple">
+<li><p>Alerta: la habilidad para alcanzar y mantener un estado de alta sensibilidad a estímulos.</p></li>
+<li><p>Orientación: la capacidad de dirigir la atención hacia la ubicación espacial del estímulo relevante.</p></li>
+<li><p>Control ejecutivo: el proceso de gestionar y resolver conflictos entre respuestas o estímulos en competencia.</p></li>
+</ul>
+<p>En la ANT, los participantes responden a un estímulo visual central (por ejemplo, una flecha que apunta a la izquierda o derecha) tras recibir pistas que pueden ser útiles para predecir la aparición o la ubicación del estímulo. La velocidad y precisión de las respuestas en diferentes condiciones permiten evaluar cada componente de la atención.</p>
+<p>Este tipo de tarea es muy útil en estudios de neurociencia cognitiva, ya que mide las diferencias individuales en habilidades atencionales y facilita el análisis de cómo diversos factores, como el envejecimiento o ciertas condiciones clínicas, afectan la atención.</p>
+<section id="configuracion">
+<h2>Configuración<a class="headerlink" href="#configuracion" title="Link to this heading">#</a></h2>
+<p>Ejecutá las siguientes celdas para configurar el entorno del notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pistas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;centro&quot;</span><span class="p">,</span> <span class="s2">&quot;doble&quot;</span><span class="p">,</span> <span class="s2">&quot;espacial&quot;</span><span class="p">]</span>
+<span class="n">congruencias</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;congruente&quot;</span><span class="p">,</span> <span class="s2">&quot;incongruente&quot;</span><span class="p">,</span> <span class="s2">&quot;neutral&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="funciones-utilitarias">
+<h3>Funciones utilitarias<a class="headerlink" href="#funciones-utilitarias" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">descargar_datos</span><span class="p">(</span><span class="n">nombre_de_archivo</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://gitlab.pavlovia.org/demos/attention_network_task/-/raw/master/&quot;</span> <span class="o">+</span> <span class="n">nombre_de_archivo</span> <span class="o">+</span> <span class="s2">&quot;?inline=false&quot;</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+    
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+    
+    <span class="k">return</span> <span class="n">preprocesar_datos</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocesar_datos</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Nos quedamos con las columnas 17, 18, 22, 27 y 28</span>
+    <span class="c1"># Columna 17: Acierto, 0 si cometió un error, 1 si acertó.</span>
+    <span class="c1"># Columna 18: Tiempo de respuesta, en ms.</span>
+    <span class="c1"># Columna 22: Repetición.</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">]]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;stim/blank.png&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;stim/both.png&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;doble&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;stim/centre.png&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;centro&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stim/lower.png&#39;</span><span class="p">,</span> <span class="s1">&#39;stim/upper.png&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">&quot;espacial&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stim/congRight.png&#39;</span><span class="p">,</span> <span class="s1">&#39;stim/congLeft.png&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">&quot;congruente&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stim/incongRight.png&#39;</span><span class="p">,</span> <span class="s1">&#39;stim/incongLeft.png&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">&quot;incongruente&quot;</span>
+    <span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;stim/neutralRight.png&#39;</span><span class="p">,</span> <span class="s1">&#39;stim/neutralLeft.png&#39;</span><span class="p">])]</span> <span class="o">=</span> <span class="s2">&quot;neutral&quot;</span>
+    
+    <span class="c1"># Eliminamos algunas filas que no tienen información</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[:,</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))]</span>
+    
+    <span class="c1"># Y las de practica</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">datos</span><span class="p">[:,</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span> <span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="c1"># Borramos la columna que indica si es entrenamiento, porque no la usaremos más</span>
+    <span class="n">datos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">datos</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">datos</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">aciertos_por_pista</span><span class="p">(</span><span class="n">pista</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Devuelve los aciertos para una pista dada, separados por tipo de congruencia.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">,(</span><span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">pista</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">congruencia</span><span class="p">)]</span> <span class="k">for</span> <span class="n">congruencia</span> <span class="ow">in</span> <span class="n">congruencias</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="n">pista</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Devuelve los tiempos de respuesta para una pista dada, separados por tipo de congruencia.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">datos</span><span class="p">[</span><span class="mi">1</span><span class="p">,(</span><span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">pista</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">congruencia</span><span class="p">)]</span> <span class="k">for</span> <span class="n">congruencia</span> <span class="ow">in</span> <span class="n">congruencias</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="n">congruencia</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Devuelve los tiempos de respuesta para una congruencia dada, separados por tipo de pista.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        congruencia (str): Tipo de congruencia. Uno de {&quot;congruente&quot;, &quot;incongruente&quot;, &quot;neutral&quot;}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">datos</span><span class="p">[</span><span class="mi">1</span><span class="p">,(</span><span class="n">datos</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">pista</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">datos</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">congruencia</span><span class="p">)]</span> <span class="k">for</span> <span class="n">pista</span> <span class="ow">in</span> <span class="n">pistas</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ejecucion-de-la-tarea">
+<h2>Ejecución de la tarea<a class="headerlink" href="#ejecucion-de-la-tarea" title="Link to this heading">#</a></h2>
+<p>Antes que nada, queremos que corras la tarea. No sólo para que comprendas mejor de que se trata, sino porque también queremos que trabajes con tus propios datos.</p>
+<p>Asegurate de seguir los siguientes pasos al pie de la letra:</p>
+<ol class="arabic simple">
+<li><p>Accedé a una versión de esta tarea que se encuentra disponible aquí: <a class="reference external" href="https://run.pavlovia.org/demos/attention_network_task">https://run.pavlovia.org/demos/attention_network_task</a>.</p></li>
+<li><p>Para luego poder descargar los datos, es <strong>muy importante</strong> que antes de comenzar la tarea te anotes el número de participante que se te asignó.</p></li>
+</ol>
+<p><img alt="Tarea" src="https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/Practico9_Tarea.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Leé las instrucciones y realizá la tarea. Tratá de responder <strong>todos los ensayos</strong> ya que para simplificar los análisis luego asumiremos que todos los ensayos tuvieron alguna respuesta.</p></li>
+</ol>
+</section>
+<section id="exploracion-de-los-datos">
+<h2>Exploración de los datos<a class="headerlink" href="#exploracion-de-los-datos" title="Link to this heading">#</a></h2>
+<p>Para descargar los datos, es necesario encontrar primero el nombre exacto del archivo que generó la tarea. Asegurate de seguir los siguientes pasos:</p>
+<ol class="arabic simple">
+<li><p>Buscá el archivo con sus datos a partir del número de participante que se te asignó <a class="reference external" href="https://gitlab.pavlovia.org/demos/attention_network_task/-/find_file/master">en esta página</a>. Debe decir <code class="docutils literal notranslate"><span class="pre">XXXX_attention_network_task_YYYY</span></code>, donde <code class="docutils literal notranslate"><span class="pre">XXXX</span></code> es tu número de participante, mientras que <code class="docutils literal notranslate"><span class="pre">YYYY</span></code> es la hora y la fecha.</p></li>
+</ol>
+<p><img alt="Buscar" src="https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/Practico9_Buscar.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>Hacé clic en el archivo que encontraste, y luego en el botón para copiar la ruta al archivo.</p></li>
+</ol>
+<p><img alt="Copiar" src="https://raw.githubusercontent.com/MaestriaCienciasCognitivas/ncc/main/book/static/Practico9_Copiar.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Reemplaza el valor de <code class="docutils literal notranslate"><span class="pre">nombre_de_archivo</span></code> en el código a continuación, con el nombre de archivo que encontraste.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datos</span> <span class="o">=</span> <span class="n">descargar_datos</span><span class="p">(</span><span class="n">nombre_de_archivo</span><span class="o">=</span><span class="s2">&quot;data/890547_attention_network_task_2025-11-12_16h52.00.593.csv&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">datos</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+        1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+       [0.8745, 0.6325, 0.6043, 0.7341, 0.616, 0.6157, 0.5499, 0.5086,
+        0.6234, 0.5491, 0.5828, 0.4658, 0.4671, 0.7658, 0.6026, 0.5164,
+        0.5011, 0.5828, 0.5735, 0.6486, 0.4991, 0.5339, 0.62, 0.5838,
+        0.5668, 0.5541, 0.5218, 0.5911, 0.5749, 0.736, 0.6888, 0.5855,
+        0.4995, 0.4832, 0.589, 0.483, 0.5221, 0.485, 0.5817, 0.5493,
+        0.5511, 0.5881, 0.4706, 0.6406, 0.5352, 0.5661, 0.6342, 0.6338],
+       [&#39;no&#39;, &#39;no&#39;, &#39;espacial&#39;, &#39;no&#39;, &#39;no&#39;, &#39;doble&#39;, &#39;espacial&#39;, &#39;no&#39;,
+        &#39;doble&#39;, &#39;doble&#39;, &#39;doble&#39;, &#39;doble&#39;, &#39;no&#39;, &#39;no&#39;, &#39;centro&#39;,
+        &#39;espacial&#39;, &#39;espacial&#39;, &#39;espacial&#39;, &#39;centro&#39;, &#39;centro&#39;, &#39;doble&#39;,
+        &#39;centro&#39;, &#39;centro&#39;, &#39;no&#39;, &#39;centro&#39;, &#39;doble&#39;, &#39;no&#39;, &#39;centro&#39;,
+        &#39;doble&#39;, &#39;espacial&#39;, &#39;centro&#39;, &#39;no&#39;, &#39;centro&#39;, &#39;doble&#39;, &#39;centro&#39;,
+        &#39;doble&#39;, &#39;no&#39;, &#39;espacial&#39;, &#39;espacial&#39;, &#39;espacial&#39;, &#39;doble&#39;, &#39;no&#39;,
+        &#39;centro&#39;, &#39;espacial&#39;, &#39;espacial&#39;, &#39;doble&#39;, &#39;centro&#39;, &#39;espacial&#39;],
+       [&#39;congruente&#39;, &#39;neutral&#39;, &#39;incongruente&#39;, &#39;incongruente&#39;,
+        &#39;congruente&#39;, &#39;neutral&#39;, &#39;congruente&#39;, &#39;neutral&#39;, &#39;incongruente&#39;,
+        &#39;congruente&#39;, &#39;incongruente&#39;, &#39;neutral&#39;, &#39;neutral&#39;,
+        &#39;incongruente&#39;, &#39;neutral&#39;, &#39;congruente&#39;, &#39;neutral&#39;,
+        &#39;incongruente&#39;, &#39;neutral&#39;, &#39;incongruente&#39;, &#39;neutral&#39;, &#39;neutral&#39;,
+        &#39;incongruente&#39;, &#39;incongruente&#39;, &#39;congruente&#39;, &#39;congruente&#39;,
+        &#39;congruente&#39;, &#39;incongruente&#39;, &#39;congruente&#39;, &#39;incongruente&#39;,
+        &#39;congruente&#39;, &#39;incongruente&#39;, &#39;congruente&#39;, &#39;neutral&#39;,
+        &#39;incongruente&#39;, &#39;congruente&#39;, &#39;congruente&#39;, &#39;congruente&#39;,
+        &#39;neutral&#39;, &#39;neutral&#39;, &#39;incongruente&#39;, &#39;neutral&#39;, &#39;congruente&#39;,
+        &#39;incongruente&#39;, &#39;congruente&#39;, &#39;incongruente&#39;, &#39;neutral&#39;,
+        &#39;neutral&#39;]], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Tratemos de poner un poco de orden. ¿Que dimensiones tienen los datos?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma de los datos&quot;</span><span class="p">,</span> <span class="n">datos</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma de los datos (4, 48)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los datos estan guardados en una matriz de <span class="math notranslate nohighlight">\(4 \times n\)</span>, donde las primera dimension contiene cuatro filas:</p>
+<ol class="arabic simple" start="0">
+<li><p>Acierto, 0 si cometió un error, 1 si acertó.</p></li>
+<li><p>Tiempo de respuesta, en milisegundos.</p></li>
+<li><p><em>Cue</em></p></li>
+<li><p><em>Target</em></p></li>
+</ol>
+<p>Mientras que la segunda dimension contiene tantas columnas como ensayos hayas completado.</p>
+<p>Usá la siguiente celda para explorar los datos. Probá imprimir las cuatro filas que mencionamos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fila:&quot;</span><span class="p">,</span> <span class="n">datos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fila: [1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+ 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0
+ 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analisis-preliminares">
+<h2>Análisis preliminares<a class="headerlink" href="#analisis-preliminares" title="Link to this heading">#</a></h2>
+<p>Les dejamos tres funciones definidas para poder extraer datos en forma estructurada: <code class="docutils literal notranslate"><span class="pre">aciertos_por_pista</span></code>, <code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_congruencia</span></code> y <code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_pista</span></code>.</p>
+<p>En esta sección, deberás probar que salidas devuelven para hacerte una idea de qué operación realizan y que estructuras tienen sus salidas.</p>
+<section id="aciertos-por-pista">
+<h3><code class="docutils literal notranslate"><span class="pre">aciertos_por_pista</span></code><a class="headerlink" href="#aciertos-por-pista" title="Link to this heading">#</a></h3>
+<p>Ejecutá la siguiente celda para imprimir información sobre <code class="docutils literal notranslate"><span class="pre">aciertos_por_pista</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function aciertos_por_pista in module __main__:
+
+aciertos_por_pista(pista)
+    Devuelve los aciertos para una pista dada, separados por tipo de congruencia.
+    
+    Args:
+        pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usá la siguiente celda para llamar la función. Probá con diferentes pistas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 1. 1. 1.]
+ [1. 1. 1. 1.]
+ [1. 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tiempos-de-respuesta-por-congruencia">
+<h3><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_congruencia</span></code><a class="headerlink" href="#tiempos-de-respuesta-por-congruencia" title="Link to this heading">#</a></h3>
+<p>Ejecutá la siguiente celda para imprimir información sobre <code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_congruencia</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function tiempos_de_respuesta_por_congruencia in module __main__:
+
+tiempos_de_respuesta_por_congruencia(congruencia)
+    Devuelve los tiempos de respuesta para una congruencia dada, separados por tipo de pista.
+    
+    Args:
+        congruencia (str): Tipo de congruencia. Uno de {&quot;congruente&quot;, &quot;incongruente&quot;, &quot;neutral&quot;}.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usá la siguiente celda para llamar la función. Probá con diferentes congruencias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;neutral&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.6325 0.5086 0.4671 0.5881]
+ [0.6026 0.5735 0.5339 0.6342]
+ [0.6157 0.4658 0.4991 0.4832]
+ [0.5011 0.5817 0.5493 0.6338]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tiempos-de-respuesta-por-pista">
+<h3><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_pista</span></code><a class="headerlink" href="#tiempos-de-respuesta-por-pista" title="Link to this heading">#</a></h3>
+<p>Ejecutá la siguiente celda para imprimir información sobre <code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_pista</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function tiempos_de_respuesta_por_pista in module __main__:
+
+tiempos_de_respuesta_por_pista(pista)
+    Devuelve los tiempos de respuesta para una pista dada, separados por tipo de congruencia.
+    
+    Args:
+        pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Usá la siguiente celda para llamar la función. Probá con diferentes pistas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.5491 0.5541 0.5749 0.483 ]
+ [0.6234 0.5828 0.5511 0.5661]
+ [0.6157 0.4658 0.4991 0.4832]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizacion-de-los-tiempos-de-reaccion">
+<h3>Visualización de los tiempos de reacción<a class="headerlink" href="#visualizacion-de-los-tiempos-de-reaccion" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;-o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;--s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;-^&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;:o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">pistas</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9b1d07673832293b666d69ae925704b39f7cb1eedacdbb12643f217d72119e67.png" src="../_images/9b1d07673832293b666d69ae925704b39f7cb1eedacdbb12643f217d72119e67.png" />
+</div>
+</div>
+</section>
+<section id="visualizacion-del-porcentaje-de-errores">
+<h3>Visualización del porcentaje de errores<a class="headerlink" href="#visualizacion-del-porcentaje-de-errores" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;-o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;--s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;-^&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">congruencias</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">yerr</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">aciertos_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;:o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">pistas</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e0de493fdbedc9bfcf0087e7ef30a6db85dd0fbedf26b0d9521358ec7832679e.png" src="../_images/e0de493fdbedc9bfcf0087e7ef30a6db85dd0fbedf26b0d9521358ec7832679e.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="calculo-de-los-efectos-de-las-redes-atencionales">
+<h2>Cálculo de los efectos de las redes atencionales<a class="headerlink" href="#calculo-de-los-efectos-de-las-redes-atencionales" title="Link to this heading">#</a></h2>
+<p>Extraemos unos promedios generales de los tiempos de reacción de las condiciones, que usaremos para medir los diferentes tipos de atención</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para NO:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para CENTRO:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para DOBLE:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para ESPACIAL:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promedio de tiempos de reacción para NO: 0.617 segundos
+Promedio de tiempos de reacción para CENTRO: 0.585 segundos
+Promedio de tiempos de reacción para DOBLE: 0.546 segundos
+Promedio de tiempos de reacción para ESPACIAL: 0.576 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para INCONGRUENTES:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;incongruente&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para CONGRUENTES:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;congruente&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Promedio de tiempos de reacción para NEUTRALES:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;neutral&quot;</span><span class="p">)),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;segundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Promedio de tiempos de reacción para INCONGRUENTES: 0.625 segundos
+Promedio de tiempos de reacción para CONGRUENTES: 0.563 segundos
+Promedio de tiempos de reacción para NEUTRALES: 0.554 segundos
+</pre></div>
+</div>
+</div>
+</div>
+<section id="efecto-de-alerta">
+<h3>Efecto de «alerta»<a class="headerlink" href="#efecto-de-alerta" title="Link to this heading">#</a></h3>
+<p>Es el efecto que tiene «alertar» sobre la inminencia del estímulo. Se calcula como el promedio de los TR de la condición sin cue espacial, menos el promedio de la condición con cue espacial doble. Esta última condición no dirige la atención hacia ningún lugar en particular (no aporta información acerca de dónde va a aparecer el estímulo), pero sí pone en «alerta» al sistema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efecto_de_alerta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;doble&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efecto de ALERTA:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">efecto_de_alerta</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;milisegundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efecto de ALERTA: 71.0 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="efecto-de-orientacion">
+<h3>Efecto de «orientación»<a class="headerlink" href="#efecto-de-orientacion" title="Link to this heading">#</a></h3>
+<p>Es el efecto de orientar la atención sobre una región particular del espacio. Se calcula como el promedio de los TR de la condición con cue central, menos el promedio de la condición con cue espacial (la que verdaderamente predice la posición del target).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efecto_de_orientacion</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;centro&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_pista</span><span class="p">(</span><span class="s2">&quot;espacial&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efecto de ORIENTACIÓN:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">efecto_de_orientacion</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;milisegundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efecto de ORIENTACIÓN: 8.5 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="efecto-de-conflicto">
+<h3>Efecto de «conflicto»<a class="headerlink" href="#efecto-de-conflicto" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">efecto_de_conflicto</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;incongruente&quot;</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">tiempos_de_respuesta_por_congruencia</span><span class="p">(</span><span class="s2">&quot;congruente&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Efecto de CONFLICTO:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">efecto_de_conflicto</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;milisegundos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Efecto de CONFLICTO: 62.3 milisegundos
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cargar-varios-archivos-de-datos">
+<h2>Cargar varios archivos de datos<a class="headerlink" href="#cargar-varios-archivos-de-datos" title="Link to this heading">#</a></h2>
+<p>Es hora de visualizar datos acumulados con los datos de la clase. Usá la siguiente celda para cargar los datos de tus compañeras y compañeros, para luego poder analizarlos en conjunto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar archivos csv</span>
+<span class="n">datos1</span> <span class="o">=</span> <span class="n">descargar_datos</span><span class="p">(</span><span class="n">nombre_de_archivo</span><span class="o">=</span><span class="s2">&quot;data/890547_attention_network_task_2025-11-12_16h52.00.593.csv&quot;</span><span class="p">)</span>
+<span class="n">datos2</span> <span class="o">=</span> <span class="n">descargar_datos</span><span class="p">(</span><span class="n">nombre_de_archivo</span><span class="o">=</span><span class="s2">&quot;data/395570_attention_network_task_2025-10-14_09h47.03.465.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Concatenarlos</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">datos1</span><span class="p">,</span> <span class="n">datos2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Forma de los datos&quot;</span><span class="p">,</span> <span class="n">datos</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Forma de los datos (4, 96)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Acabamos de sobreescribir la variable <code class="docutils literal notranslate"><span class="pre">datos</span></code>. Volvé a correr las celdas a partir de la sección «Análisis preliminares» para que los análisis ahora usen estos datos acumulados.</p>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Link to this heading">#</a></h2>
+<p>Fan, J., et al (2002). Testing the Efficiency and Independence of Attentional Networks. <em>Journal of Cognitive Neuroscience</em>, 14(3), 375–388. <a class="reference external" href="https://doi.org/10.1162/089892902317361886">doi:10.1162/089892902317361886</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="S11_Practico8.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Práctico 8: Exploración de una oscilación neural</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion">Configuración</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-utilitarias">Funciones utilitarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejecucion-de-la-tarea">Ejecución de la tarea</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-los-datos">Exploración de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-preliminares">Análisis preliminares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aciertos-por-pista"><code class="docutils literal notranslate"><span class="pre">aciertos_por_pista</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-de-respuesta-por-congruencia"><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_congruencia</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tiempos-de-respuesta-por-pista"><code class="docutils literal notranslate"><span class="pre">tiempos_de_respuesta_por_pista</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-los-tiempos-de-reaccion">Visualización de los tiempos de reacción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-porcentaje-de-errores">Visualización del porcentaje de errores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-los-efectos-de-las-redes-atencionales">Cálculo de los efectos de las redes atencionales</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-alerta">Efecto de «alerta»</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-orientacion">Efecto de «orientación»</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efecto-de-conflicto">Efecto de «conflicto»</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cargar-varios-archivos-de-datos">Cargar varios archivos de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias">Referencias</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Maestría en Ciencias Cognitivas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
