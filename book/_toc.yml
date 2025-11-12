@@ -45,3 +45,6 @@ parts:
     - file: S11-oscilaciones
     - file: notebooks/S11_Cuaderno7
     - file: notebooks/S11_Practico8
+  - caption: Atención
+    chapters:
+    - file: notebooks/S12_Practico9
