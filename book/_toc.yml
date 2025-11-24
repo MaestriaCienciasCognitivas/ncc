@@ -6,16 +6,16 @@ root: intro
 parts:
   - caption: Taller de Python
     chapters:
-    - file: notebooks/Cuaderno1
-    - file: notebooks/Cuaderno2
+    - file: notebooks/S1_Cuaderno1
+    - file: notebooks/S1_Cuaderno2
   - caption: Modelos de neuronas
     chapters:
     - file: S2-modelos-neuronas
-    - file: notebooks/W2_Cuaderno3
-    - file: notebooks/W2_Practico1
-    - file: notebooks/W3_Practico2a
-    - file: notebooks/W3_Practico2b
-    - file: notebooks/W3_Practico2c
+    - file: notebooks/S2_Cuaderno3
+    - file: notebooks/S2_Practico1
+    - file: notebooks/S3_Practico2a
+    - file: notebooks/S3_Practico2b
+    - file: notebooks/S3_Practico2c
   - caption: Redes neuronales
     chapters:
     - file: S4-redes-neuronales
@@ -48,3 +48,6 @@ parts:
   - caption: Atención
     chapters:
     - file: notebooks/S12_Practico9
+  - caption: Cognición numérica
+    chapters:
+    - file: notebooks/S13_Practico10
