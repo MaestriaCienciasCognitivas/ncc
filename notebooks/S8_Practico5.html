@@ -184,17 +184,17 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
 <ul class="nav bd-sidenav">
@@ -237,6 +237,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="S12_Practico9.html">Práctico 9: Redes atencionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cognición numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S13_Practico10.html">Práctico 10: Cognición numérica</a></li>
 </ul>
 
     </div>
@@ -728,8 +732,8 @@ State Space Discrete(500)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 2152
-Penalties incurred: 640
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timesteps taken: 882
+Penalties incurred: 273
 </pre></div>
 </div>
 </div>
@@ -760,7 +764,7 @@ Penalties incurred: 640
 +---------+
   (Dropoff)
 
-Timestep:  2152
+Timestep:  882
 State:  0
 Action:  5
 Reward:  20
@@ -877,10 +881,12 @@ Q-table</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  9900
-Training finished.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training finished.
 
-CPU times: user 2.4 s, sys: 209 ms, total: 2.61 s
-Wall time: 2.47 s
+CPU times: total: 9.53 s
+Wall time: 9.61 s
 </pre></div>
 </div>
 </div>
@@ -900,8 +906,8 @@ Wall time: 2.47 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.42990164, -1.88712558,  2.75200369, -2.08419411, -7.00954682,
-       -7.61110895])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.54011337, -2.17711557,  2.75200369, -3.52106845, -6.4184575 ,
+       -7.6073852 ])
 </pre></div>
 </div>
 </div>
@@ -943,7 +949,10 @@ Wall time: 2.47 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results after  100 episodes:
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results after 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 100 episodes:
 Average timesteps per episode:  12.0
 Average penalties per episode:  0.0
 </pre></div>
@@ -1018,8 +1027,8 @@ Average penalties per episode:  0.0
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Episode:  10000
 Training finished.
 
-CPU times: user 1.63 s, sys: 157 ms, total: 1.78 s
-Wall time: 1.68 s
+CPU times: total: 6.58 s
+Wall time: 6.6 s
 </pre></div>
 </div>
 </div>
@@ -1031,8 +1040,8 @@ Wall time: 1.68 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.21630498, -0.50923227,  2.75200369, -0.85756408, -7.27938896,
-       -7.47296464])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.93671332, -0.52340308,  2.75200369, -2.12663931, -7.01090703,
+       -7.48106926])
 </pre></div>
 </div>
 </div>

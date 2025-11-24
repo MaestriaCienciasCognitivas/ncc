@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,6 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/S12_Practico9';</script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Práctico 10: Cognición numérica" href="S13_Practico10.html" />
     <link rel="prev" title="Práctico 8: Exploración de una oscilación neural" href="S11_Practico8.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -183,17 +184,17 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
-<li class="toctree-l1"><a class="reference internal" href="W3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
 <ul class="nav bd-sidenav">
@@ -236,6 +237,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Práctico 9: Redes atencionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cognición numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S13_Practico10.html">Práctico 10: Cognición numérica</a></li>
 </ul>
 
     </div>
@@ -717,7 +722,7 @@ document.write(`
 
 aciertos_por_pista(pista)
     Devuelve los aciertos para una pista dada, separados por tipo de congruencia.
-    
+
     Args:
         pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.
 </pre></div>
@@ -754,7 +759,7 @@ aciertos_por_pista(pista)
 
 tiempos_de_respuesta_por_congruencia(congruencia)
     Devuelve los tiempos de respuesta para una congruencia dada, separados por tipo de pista.
-    
+
     Args:
         congruencia (str): Tipo de congruencia. Uno de {&quot;congruente&quot;, &quot;incongruente&quot;, &quot;neutral&quot;}.
 </pre></div>
@@ -792,7 +797,7 @@ tiempos_de_respuesta_por_congruencia(congruencia)
 
 tiempos_de_respuesta_por_pista(pista)
     Devuelve los tiempos de respuesta para una pista dada, separados por tipo de congruencia.
-    
+
     Args:
         pista (str): Nombre de la pista. Uno de {&quot;no&quot;, &quot;centro&quot;, &quot;doble&quot;, &quot;espacial&quot;}.
 </pre></div>
@@ -830,7 +835,7 @@ tiempos_de_respuesta_por_pista(pista)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b1d07673832293b666d69ae925704b39f7cb1eedacdbb12643f217d72119e67.png" src="../_images/9b1d07673832293b666d69ae925704b39f7cb1eedacdbb12643f217d72119e67.png" />
+<img alt="../_images/ab2c93d1fc26af35798f82b8add4f0bbc1b8961e74d9e66e533868a692f81a88.png" src="../_images/ab2c93d1fc26af35798f82b8add4f0bbc1b8961e74d9e66e533868a692f81a88.png" />
 </div>
 </div>
 </section>
@@ -849,7 +854,7 @@ tiempos_de_respuesta_por_pista(pista)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e0de493fdbedc9bfcf0087e7ef30a6db85dd0fbedf26b0d9521358ec7832679e.png" src="../_images/e0de493fdbedc9bfcf0087e7ef30a6db85dd0fbedf26b0d9521358ec7832679e.png" />
+<img alt="../_images/c60726e5d27956f088d856fceeb7945ceecdd8ae1e2480a2c96be353fb2ade22.png" src="../_images/c60726e5d27956f088d856fceeb7945ceecdd8ae1e2480a2c96be353fb2ade22.png" />
 </div>
 </div>
 </section>
@@ -1013,6 +1018,15 @@ Promedio de tiempos de reacción para NEUTRALES: 0.554 segundos
         <p class="prev-next-subtitle">anterior</p>
         <p class="prev-next-title">Práctico 8: Exploración de una oscilación neural</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="S13_Practico10.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Práctico 10: Cognición numérica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
