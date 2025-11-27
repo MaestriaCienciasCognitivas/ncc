@@ -51,3 +51,6 @@ parts:
   - caption: Cognición numérica
     chapters:
     - file: notebooks/S13_Practico10
+  - caption: Navegación
+    chapters:
+    - file: notebooks/S14_Practico11
