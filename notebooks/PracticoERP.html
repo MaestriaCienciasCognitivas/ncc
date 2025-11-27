@@ -1,0 +1,1035 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Procesamiento de datos de potenciales evocados &#8212; Neurociencia Cognitiva y Computacional</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/PracticoERP';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Neurociencia Cognitiva y Computacional - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Neurociencia Cognitiva y Computacional - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Búsqueda</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Taller de Python</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno1.html">Cuaderno 1: Introducción a Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1_Cuaderno2.html">Cuaderno 2: NumPy y Matplotlib</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Modelos de neuronas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S2-modelos-neuronas.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Cuaderno3.html">Cuaderno 3: Métodos numéricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2_Practico1.html">Práctico 1: Ecuación de Hodgkin-Huxley</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2a.html">Práctico 2a: Neurona de Wilson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2b.html">Práctico 2b: Leaky Integrate and Fire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3_Practico2c.html">Práctico 2c: Neurona de Izhikevich</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes neuronales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S4-redes-neuronales.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Cuaderno4.html">Cuaderno 4: Regla de Oja</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4_Practico3.html">Práctico 3: Modelos de memorias matriciales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje supervisado</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S5_Cuaderno5.html">Cuaderno 5: Perceptrones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S5_Practico4.html">Práctico 4: Redes convolucionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Redes biológicas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S7_Cuaderno6.html">Cuaderno 6: Convoluciones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Aprendizaje por refuerzo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S8-aprendizaje-refuerzo.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S8_Practico5.html">Práctico 5: Taxi</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Campos receptivos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S9-campos-receptivos.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S9_Practico6.html">Práctico 6: Campos receptivos</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Control motor</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S10-control-motor.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S10_Practico7.html">Práctico 7: Generadores centrales de patrones (CPGs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Oscilaciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../S11-oscilaciones.html">Introducción</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Cuaderno7.html">Cuaderno 7: Densidad Espectral de Potencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S11_Practico8.html">Práctico 8: Exploración de una oscilación neural</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Atención</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S12_Practico9.html">Práctico 9: Redes atencionales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cognición numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S13_Practico10.html">Práctico 10: Cognición numérica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Navegación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="S14_Practico11.html">Práctico 11: Navegación</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/MaestriaCienciasCognitivas/ncc/blob/main/book/notebooks/PracticoERP.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MaestriaCienciasCognitivas/ncc/issues/new?title=Issue%20on%20page%20%2Fnotebooks/PracticoERP.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/PracticoERP.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Procesamiento de datos de potenciales evocados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-la-figura-anterior-veo-los-triggers-cada-uno-define-un-ensayo-hay-aprox-mitad-en-condicion-1-y-mitad-en-condicion-2">En la figura anterior veo los triggers, cada uno define un ensayo. Hay aprox mitad en condición 1 y mitad en condición 2.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-pasa-cuando-promedio-los-ensayos">¿qué pasa cuando promedio los ensayos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vamos-bien-pero-ese-ruido-de-alta-frecuencia-se-ve-vamos-a-filtrar-la-senal">Vamos bien, pero ese ruido de alta frecuencia…. ¿se ve? Vamos a filtrar la señal.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#si-el-experimento-funciono-a-que-condicion-experimental-una-palabra-o-dos-palabras-crees-que-corresponde-la-condicion-1-y-a-cual-la-condicion-2">Si el experimento funcionó, ¿a qué condición experimental (una palabra o dos palabras) crees que corresponde la condición 1 y a cuál la condición 2?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="procesamiento-de-datos-de-potenciales-evocados">
+<h1>Procesamiento de datos de potenciales evocados<a class="headerlink" href="#procesamiento-de-datos-de-potenciales-evocados" title="Link to this heading">#</a></h1>
+<p>Sobre el estudio de Bemis &amp; Pylkkanen, 2011:  «Simple composition: A magnetoencephalography investigation into the comprehension of minimal linguistic phrases.» The Journal of Neuroscience 31.8 (2011): 2801-2814.
+Datos: Emilia Fló.</p>
+<p>&#64;author: Camila Zugarramurdi, Noviembre 2016</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># algunos settings</span>
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="o">%</span><span class="k">pylab</span> inline
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>%pylab is deprecated, use %matplotlib inline and import the required libraries.
+Populating the interactive namespace from numpy and matplotlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.signal</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Primero, levanto los datos crudos, corresponden a el EEG de 1 participante:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;datoscrudos.mat&#39;</span> <span class="c1"># Carga de datos</span>
+<span class="n">dataC</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+
+<span class="nb">print</span> <span class="p">(</span><span class="n">dataC</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="nn">File C:\Users\MARTN~1\miniconda3\envs\scratch\Lib\site-packages\scipy\io\matlab\_mio.py:39,</span> in <span class="ni">_open_file</span><span class="nt">(file_like, appendmat, mode)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">39</span>     <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_like</span><span class="p">,</span> <span class="n">mode</span><span class="p">),</span> <span class="kc">True</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">41</span>     <span class="c1"># Probably &quot;not found&quot;</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;datoscrudos.mat&#39;
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;datoscrudos.mat&#39;</span> <span class="c1"># Carga de datos</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">dataC</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span> <span class="p">(</span><span class="n">dataC</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="nn">File C:\Users\MARTN~1\miniconda3\envs\scratch\Lib\site-packages\scipy\io\matlab\_mio.py:233,</span> in <span class="ni">loadmat</span><span class="nt">(file_name, mdict, appendmat, spmatrix, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">88</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">89</span><span class="sd"> Load MATLAB file.</span>
+<span class="g g-Whitespace">     </span><span class="mi">90</span><span class="sd"> </span>
+<span class="sd">   (...)    230     3.14159265+3.14159265j])</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span> <span class="n">variable_names</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;variable_names&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">233</span> <span class="k">with</span> <span class="n">_open_file_context</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">appendmat</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span>     <span class="n">MR</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mat_reader_factory</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span>     <span class="n">matfile_dict</span> <span class="o">=</span> <span class="n">MR</span><span class="o">.</span><span class="n">get_variables</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)</span>
+
+<span class="nn">File C:\Users\MARTN~1\miniconda3\envs\scratch\Lib\contextlib.py:141,</span> in <span class="ni">_GeneratorContextManager.__enter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">139</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
+<span class="g g-Whitespace">    </span><span class="mi">140</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">141</span>     <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+<span class="nn">File C:\Users\MARTN~1\miniconda3\envs\scratch\Lib\site-packages\scipy\io\matlab\_mio.py:17,</span> in <span class="ni">_open_file_context</span><span class="nt">(file_like, appendmat, mode)</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="nd">@contextmanager</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">def</span><span class="w"> </span><span class="nf">_open_file_context</span><span class="p">(</span><span class="n">file_like</span><span class="p">,</span> <span class="n">appendmat</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">f</span><span class="p">,</span> <span class="n">opened</span> <span class="o">=</span> <span class="n">_open_file</span><span class="p">(</span><span class="n">file_like</span><span class="p">,</span> <span class="n">appendmat</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="k">yield</span> <span class="n">f</span>
+
+<span class="nn">File C:\Users\MARTN~1\miniconda3\envs\scratch\Lib\site-packages\scipy\io\matlab\_mio.py:45,</span> in <span class="ni">_open_file</span><span class="nt">(file_like, appendmat, mode)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>     <span class="k">if</span> <span class="n">appendmat</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">file_like</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.mat&#39;</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span>         <span class="n">file_like</span> <span class="o">+=</span> <span class="s1">&#39;.mat&#39;</span>
+<span class="ne">---&gt; </span><span class="mi">45</span>     <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_like</span><span class="p">,</span> <span class="n">mode</span><span class="p">),</span> <span class="kc">True</span>
+<span class="g g-Whitespace">     </span><span class="mi">46</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="s1">&#39;Reader needs file name or open file-like object&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span>     <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;datoscrudos.mat&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># estas son todas las variables que había en los datos, puedo acceder a cada una con la sintaxis</span>
+<span class="n">dataC</span><span class="p">[</span><span class="s1">&#39;numChan&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>¿Cuántos electrodos se usaron?</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># la frecuencia de muestreo está en la key fs (por sampling frequency)</span>
+<span class="n">srate</span><span class="o">=</span><span class="n">dataC</span><span class="p">[</span><span class="s1">&#39;fs&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">srate</span><span class="p">)</span>
+<span class="c1"># los datos de la señal EEG están en la key data y los nombres de los electrodos en labels</span>
+<span class="n">dataRaw</span><span class="o">=</span><span class="n">dataC</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+<span class="n">channels</span><span class="o">=</span><span class="n">dataC</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">]</span>
+<span class="c1"># la última fila de los datos de EEG es la línea de triggers</span>
+<span class="n">triggers</span><span class="o">=</span><span class="n">dataRaw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">triggers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Triggers</strong>: son los indicadores de eventos, definen cada ensayo. Cuando presento un estímulo importante, mando un trigger, así sé en qué punto de tiempo tengo que mirar en el registro de EEG para ver los potenciales evocados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">triggers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot</span><span class="p">(</span><span class="n">triggers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tengo que hacer algunas volteretas para obtener los puntos te tiempo de los triggers, </span>
+<span class="c1"># por ahora no importa, sí importa verlos:</span>
+
+<span class="n">moda</span><span class="o">=</span><span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">triggers</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">triggers</span><span class="o">=</span><span class="n">triggers</span><span class="o">-</span><span class="n">moda</span>
+
+<span class="c1">#encuentro el tiempo del primer trigger de cada set</span>
+<span class="c1">#**¿QUÉ QUIERE DECIR CADA SET&#39;?**</span>
+<span class="n">nz</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">triggers</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">loc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">nz</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span>
+<span class="n">index</span><span class="o">=</span><span class="n">nz</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">loc</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1">#busco las ubicaciones donde el array lock es verdader</span>
+<span class="n">trig</span><span class="o">=</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="n">triggers</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span>
+
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">75000</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">triggers</span><span class="p">),</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">])</span>
+
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Hay &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">+</span> <span class="s1">&#39; ensayos&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="en-la-figura-anterior-veo-los-triggers-cada-uno-define-un-ensayo-hay-aprox-mitad-en-condicion-1-y-mitad-en-condicion-2">
+<h2>En la figura anterior veo los triggers, cada uno define un ensayo. Hay aprox mitad en condición 1 y mitad en condición 2.<a class="headerlink" href="#en-la-figura-anterior-veo-los-triggers-cada-uno-define-un-ensayo-hay-aprox-mitad-en-condicion-1-y-mitad-en-condicion-2" title="Link to this heading">#</a></h2>
+<p>Bien, quiero ver varios canales al mismo tiempo, para ver cómo está la señal. Cada fila corresponde a un canal.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Podemos ignorar la definción de la función.</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">LineCollection</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_eeg</span><span class="p">(</span><span class="n">EEG</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">canales</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tiempo</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Grafico los datos de EEG, cada línea es un canal</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros</span>
+<span class="sd">    ----------</span>
+<span class="sd">    EEG : datos (canales x muestras)</span>
+<span class="sd">    canales : el número de canales que quiero ver</span>
+<span class="sd">    tiempo : el total de tiempo que quiero ver, en minutos</span>
+<span class="sd">    color : caracter (default &#39;k&#39;, que es negro), otras opciones son &#39;r&#39;,&#39;g&#39;,&#39;b&#39;,&#39;k&#39;</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">vspace</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">t</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">tiempo</span><span class="o">*</span><span class="n">srate</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">EEG</span><span class="o">=</span><span class="n">EEG</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">canales</span><span class="p">:,</span><span class="mi">1</span><span class="p">:</span><span class="n">t</span><span class="p">]</span> <span class="c1"># me quedo con una parte, 15 canales 4 segundos</span>
+    <span class="n">bases</span> <span class="o">=</span> <span class="n">vspace</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EEG</span><span class="p">))</span> <span class="c1"># vspace * 0, vspace * 1, vspace * 2, ..., vspace * 6</span>
+    
+    <span class="c1"># To add the bases (a vector of length 7) to the EEG (a 2-D Matrix), we don&#39;t use</span>
+    <span class="c1"># loops, but rely on a NumPy feature called broadcasting:</span>
+    <span class="c1"># http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html</span>
+    <span class="n">EEG</span> <span class="o">=</span> <span class="n">EEG</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">bases</span>
+    
+    <span class="c1"># Calculate a timeline in seconds, knowing that the sample rate of the EEG recorder was 2048 Hz.</span>
+    <span class="n">samplerate</span> <span class="o">=</span> <span class="mf">256.</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">EEG</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">samplerate</span>
+    
+    <span class="c1"># Plot EEG versus time</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">EEG</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    
+    <span class="c1"># Add gridlines to the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    
+    <span class="c1"># Label the axes</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo (s)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Canales&#39;</span><span class="p">)</span>
+  
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">bases</span><span class="p">)</span>
+   
+    <span class="c1"># Put a nice title on top of the plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;EEG data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Llamando a la función plot_eeg con los parámetros tiempo (en minutos) y canales puedo ver los canales registrados. <strong>¿Qué pasa con la señal a medida que avanza el tiempo?</strong> Modificar el valor de tiempo y de canales en el código a continuación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plot_eeg</span><span class="p">(</span><span class="n">dataRaw</span><span class="p">,</span> <span class="n">tiempo</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">canales</span><span class="o">=</span><span class="mi">28</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Uno de los principales pasos en el procesamiento de datos de EEG para potenciales evocados es dividir la señal continua en cada uno de los ensayos. Los <strong>ensayos</strong> se definen desde una ventana de tiempo de X ms previa a la aparición del estímulo de interés hasta una ventana de tiempo posterior a la aparición. Típicamente estos valores corresponden a 200 ms previos y 800 ms posteriores. Además, debemos identificar, en cada ensayo, a qué condición corresponde. Lo hacemos a continuación:</p>
+<p>Veamos cómo luce un ensayo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separo los triggers para cada condición</span>
+<span class="n">event_inds1</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">event_inds2</span> <span class="o">=</span> <span class="n">trig</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">trig</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Grafico un ensayo</span>
+<span class="n">this_event</span> <span class="o">=</span> <span class="n">event_inds1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">timewin</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">srate</span><span class="o">*</span><span class="mf">0.2</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">srate</span><span class="o">*</span><span class="mf">0.8</span><span class="p">)]</span> 
+<span class="n">canal</span><span class="o">=</span><span class="mi">8</span>
+
+<span class="n">my_ERP</span> <span class="o">=</span> <span class="n">dataRaw</span><span class="p">[</span><span class="n">canal</span><span class="p">][</span><span class="n">this_event</span><span class="o">-</span><span class="n">timewin</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">this_event</span> <span class="o">+</span> <span class="n">timewin</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">my_ERP</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">my_ERP</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;esto es un ensayo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bien, pero el eje de las y está un poco raro, ¿qué unidades son esas? La señal está montada sobre una valor de voltaje de base. Necesitamos entonces hacer <strong>correción por línea de base</strong>: a cada ensayo le restamos el promedio del voltaje de una ventana de tiempo de aprox. 200 ms previos al comienzo del ensayo. De este modo todos los ensayos quedan centrados en 0, y podemos promediarlos.</p>
+<p>Veamos si funcionó la corrección por línea de base:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición de ensayos y corrección por línea de base</span>
+
+<span class="c1"># vamos a procesar solamente un canal para visualizarlo más fácilmente, en este caso &#39;Pz&#39;</span>
+<span class="c1">#probar para otros canales</span>
+<span class="n">dataRaw2</span> <span class="o">=</span> <span class="n">dataRaw</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;el canal que vamos a procesar es &#39;</span><span class="o">+</span> <span class="n">channels</span><span class="p">[</span><span class="mi">8</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+
+
+<span class="c1"># en esta matriz guardo los datos de los ensayos: tiene tantas filas como ensayos (119) y tantas columnas como puntos de tiempo (255)</span>
+
+<span class="n">chan_baselines1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds1</span><span class="p">));</span> 
+<span class="n">ERP_matrix1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds1</span><span class="p">),</span><span class="n">timewin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">timewin</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span> 
+
+<span class="c1"># Para cada ensayo de condición 1</span>
+<span class="k">for</span> <span class="n">ensayo</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds1</span><span class="p">)):</span>
+    <span class="c1"># 1.  calculo el promedio del voltaje antes de que empiece el ensayo </span>
+    <span class="n">chan_baselines1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dataRaw2</span><span class="p">[</span><span class="n">event_inds1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span><span class="o">-</span><span class="mi">50</span><span class="p">:</span><span class="n">event_inds1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">+</span> <span class="mi">0</span><span class="p">])</span> 
+    <span class="c1"># 2. y se lo resto a todo el ensayo</span>
+    <span class="n">ERP_baseline_removed</span> <span class="o">=</span> <span class="n">dataRaw2</span><span class="p">[:][</span><span class="n">event_inds1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span><span class="o">-</span><span class="n">timewin</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">event_inds1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">+</span> <span class="n">timewin</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">-</span> <span class="n">chan_baselines1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span>     
+    <span class="c1"># 3. y voy guardando cada ensayo con la línea de base corregida en la matriz ERP_matrix</span>
+    <span class="n">ERP_matrix1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">ERP_baseline_removed</span><span class="p">;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;la matriz de ensayos de la condición 1 tiene &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ERP_matrix1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; filas&#39;</span><span class="p">)</span>
+
+<span class="c1"># Para ensayos de la condición 2</span>
+<span class="n">chan_baselines2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds2</span><span class="p">));</span>
+<span class="n">ERP_matrix2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds2</span><span class="p">),</span><span class="n">timewin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">timewin</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span> 
+<span class="c1"># Para cada ensayo de condición 2,</span>
+<span class="k">for</span> <span class="n">ensayo</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">event_inds2</span><span class="p">)):</span>
+    <span class="n">chan_baselines2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dataRaw2</span><span class="p">[</span><span class="n">event_inds2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span><span class="o">-</span><span class="mi">50</span><span class="p">:</span><span class="n">event_inds2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">+</span> <span class="mi">0</span><span class="p">])</span> 
+    <span class="n">ERP_baseline_removed</span> <span class="o">=</span> <span class="n">dataRaw2</span><span class="p">[:][</span><span class="n">event_inds2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span><span class="o">-</span><span class="n">timewin</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="n">event_inds2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> <span class="o">+</span> <span class="n">timewin</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">-</span> <span class="n">chan_baselines2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">]</span> 
+    <span class="n">ERP_matrix2</span><span class="p">[</span><span class="n">ensayo</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">ERP_baseline_removed</span><span class="p">;</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;la matriz de ensayos de la condición 2 tiene &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ERP_matrix2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span>  <span class="s1">&#39; filas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>¿Cuántos ensayos hay para cada condición?</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grafico el primer ensayo:</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ERP_matrix1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bien, ya está centrado en 0, pero el tiempo está medio raro, vamos a corregirlo también. Tengo 256 puntos de tiempo por segundo, y por lo tanto el eje x del gráfico de arriba no es tiempo en segundos, sino <strong>puntos de tiempo o muestras</strong>. ¿Cómo transformo tiempo a puntos de tiempo?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># es una regla de 3, si 256 puntos de tiempo corresponden a 1 segundo, cuántos puntos de tiempo corresponden a X segundos.</span>
+<span class="c1"># O sea, divido los puntos de tiempo por 256 [y le resto -0.2 porque quiero que el 0 corresponda al tiempo donde apareció el sustantivo]</span>
+<span class="n">tiempototal</span> <span class="o">=</span> <span class="n">ERP_matrix1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">tiempototal</span><span class="p">)</span> <span class="o">/</span> <span class="mf">256.</span><span class="o">-</span><span class="mf">0.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pruebo volver a graficar, ahora indicando el tiempo en el x:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ensayo</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ERP_matrix1</span><span class="p">[</span><span class="n">ensayo</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP: ensayo &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ensayo</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tiempo (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Voltaje (uV)&#39;</span><span class="p">)</span>
+<span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bien, esto es 1 ensayo, pero tengo 120, aprox. la mitad por cada condición. Vamos a ver cómo está el resto. Ir aumentándo el número de ensayos a mostrar en la variable «trials» a continuación y graficar. <em>¿Hay diferencias entre las condiciones?</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># el máximo número de ensayos es 120, la condicion es 1 o 2</span>
+<span class="n">trials</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">condicion</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grafico los ensayos</span>
+
+<span class="k">if</span> <span class="n">condicion</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ERP_matrix1</span>
+<span class="k">elif</span> <span class="n">condicion</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span> <span class="n">dat</span> <span class="o">=</span> <span class="n">ERP_matrix2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">256.</span><span class="o">-</span><span class="mf">0.2</span>
+<span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">trials</span><span class="p">):</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dat</span><span class="p">[</span><span class="n">event</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP ensayo&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">event</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">trials</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="que-pasa-cuando-promedio-los-ensayos">
+<h2>¿qué pasa cuando promedio los ensayos?<a class="headerlink" href="#que-pasa-cuando-promedio-los-ensayos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_ERP1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ERP_matrix1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">mean_ERP2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">ERP_matrix2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mean_ERP1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mf">256.</span><span class="o">-</span><span class="mf">0.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">mean_ERP1</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP cond 1&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">mean_ERP2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP cond 2&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">);</span>
+<span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vamos-bien-pero-ese-ruido-de-alta-frecuencia-se-ve-vamos-a-filtrar-la-senal">
+<h2>Vamos bien, pero ese ruido de alta frecuencia…. ¿se ve? Vamos a filtrar la señal.<a class="headerlink" href="#vamos-bien-pero-ese-ruido-de-alta-frecuencia-se-ve-vamos-a-filtrar-la-senal" title="Link to this heading">#</a></h2>
+<p><strong>Atención</strong>: los filtros deben aplicarse antes de definir los ensayos, sobre la señal continua, hoy vamos a hacer una excepción.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Defino las funciones de filtrado, es un filtro butterworth (especial para ingenieros)</span>
+
+<span class="c1"># tomado prestado de acá: </span>
+<span class="c1"># http://localhost:8888/notebooks/Dropbox/tutorials-master/tutorials-master/Filters.ipynb</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">butter_bandpass</span><span class="p">(</span><span class="n">lowcut</span><span class="p">,</span> <span class="n">highcut</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="c1">#lowcut es el límite inferior del filtro</span>
+    <span class="c1">#hicut es el límite superior del filtro</span>
+    <span class="c1">#fs es la frecuencia de muestreo</span>
+    <span class="n">nyq</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">fs</span> <span class="c1">#nyquist frequency - see http://www.dspguide.com/ por más información</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lowcut</span><span class="p">)</span> <span class="o">/</span> <span class="n">nyq</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">highcut</span><span class="p">)</span> <span class="o">/</span> <span class="n">nyq</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="p">[</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">],</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;band&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">butter_bandpass_filter</span><span class="p">(</span><span class="n">mydata</span><span class="p">,</span> <span class="n">lowcut</span><span class="p">,</span> <span class="n">highcut</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">butter_bandpass</span><span class="p">(</span><span class="n">lowcut</span><span class="p">,</span> <span class="n">highcut</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">mydata</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_dat</span><span class="p">(</span><span class="n">lo_cut</span><span class="p">,</span><span class="n">hi_cut</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>    
+
+    <span class="n">filtdat</span> <span class="o">=</span> <span class="n">butter_bandpass_filter</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span><span class="n">lo_cut</span><span class="p">,</span><span class="n">hi_cut</span><span class="p">,</span><span class="n">srate</span><span class="p">,</span><span class="n">order</span><span class="p">);</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;raw data&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">filtdat</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;filtered data&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataFilt1</span> <span class="o">=</span> <span class="n">butter_bandpass_filter</span><span class="p">(</span><span class="n">mean_ERP1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+<span class="n">dataFilt2</span> <span class="o">=</span> <span class="n">butter_bandpass_filter</span><span class="p">(</span><span class="n">mean_ERP2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">256</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">dataFilt1</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP cond 1&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">dataFilt2</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;ERP cond 2&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Esto se parece bastante a lo que vemos en los artículos, aunque normalmente está aún un poco más filtrado. En la literatura de lenguaje sin embargo, hay un fenómeno raro: se acostumbra a poner el negativo para arriba. En el comando anterior, descomentar la última línea para dar vuelta el eje de las y. <em>¿Podés agregar nombres en los ejes (tiempo y voltaje) y un título al gráfico?</em></p>
+</section>
+<section id="si-el-experimento-funciono-a-que-condicion-experimental-una-palabra-o-dos-palabras-crees-que-corresponde-la-condicion-1-y-a-cual-la-condicion-2">
+<h2>Si el experimento funcionó, ¿a qué condición experimental (una palabra o dos palabras) crees que corresponde la condición 1 y a cuál la condición 2?<a class="headerlink" href="#si-el-experimento-funciono-a-que-condicion-experimental-una-palabra-o-dos-palabras-crees-que-corresponde-la-condicion-1-y-a-cual-la-condicion-2" title="Link to this heading">#</a></h2>
+<p>En la vida real, seguimos estos mismo pasos para cada participante y para cada canal, y luego promediamos los promedios de cada participante y de cada canal, a esto le llamamos gran promedio. Cabe destacar que en este tutorial nos salteamos un paso fundamental que es limpiar los datos: los exploramos visualmente o con procedimientos un poquito más sofisticados (como con umbrales, la varianza por ensayo, o análisis de componentes principales) para eliminar ensayos contaminados por artefactos oculares, motores o de piel. Finalmente realizamos estadística inferencial para testear diferencias entre condiciones y/o definir ventanas de tiempo de interés.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#en-la-figura-anterior-veo-los-triggers-cada-uno-define-un-ensayo-hay-aprox-mitad-en-condicion-1-y-mitad-en-condicion-2">En la figura anterior veo los triggers, cada uno define un ensayo. Hay aprox mitad en condición 1 y mitad en condición 2.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-pasa-cuando-promedio-los-ensayos">¿qué pasa cuando promedio los ensayos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vamos-bien-pero-ese-ruido-de-alta-frecuencia-se-ve-vamos-a-filtrar-la-senal">Vamos bien, pero ese ruido de alta frecuencia…. ¿se ve? Vamos a filtrar la señal.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#si-el-experimento-funciono-a-que-condicion-experimental-una-palabra-o-dos-palabras-crees-que-corresponde-la-condicion-1-y-a-cual-la-condicion-2">Si el experimento funcionó, ¿a qué condición experimental (una palabra o dos palabras) crees que corresponde la condición 1 y a cuál la condición 2?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Maestría en Ciencias Cognitivas
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
