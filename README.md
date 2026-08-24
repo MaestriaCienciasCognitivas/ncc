@@ -3,6 +3,19 @@
 **El contenido se debería consultar principalmente en nuestro ebook: https://maestriacienciascognitivas.github.io/ncc [en desarrollo continuo]**
 ---
 
+## Estructura
+
+El contenido del libro está en `book/`, y el archivo principal de configuración
+está en `book/myst.yml`. Para ejecutar el libro localmente:
+
+```bash
+cd book  # entrar a la carpeta del libro
+python -v venv .venv  # crear un entorno virtual
+source .venv/bin/activate  # activar el entorno virtual
+pip install -r requirements.txt  # instalar las dependencias
+jupyter book start  # ejecutar el libro
+```
+
 ## Licencias
 
 [![CC BY 4.0][cc-by-image]][cc-by]
