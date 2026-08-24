@@ -3,3 +3,4 @@
 .ipynb_checkpoints/
 book/_build
 book/notebooks/data/
+.venv

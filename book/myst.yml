@@ -1,0 +1,67 @@
+version: 1
+project:
+  title: Neurociencia Cognitiva y Computacional
+  authors:
+    - name: Maestría en Ciencias Cognitivas
+  github: MaestriaCienciasCognitivas/ncc
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: intro.md
+    - title: Taller de Python
+      children:
+        - file: notebooks/S1_Cuaderno1.ipynb
+        - file: notebooks/S1_Cuaderno2.ipynb
+    - title: Modelos de neuronas
+      children:
+        - file: S2-modelos-neuronas.md
+        - file: notebooks/S2_Cuaderno3.ipynb
+        - file: notebooks/S2_Practico1.ipynb
+        - file: notebooks/S3_Practico2a.ipynb
+        - file: notebooks/S3_Practico2b.ipynb
+        - file: notebooks/S3_Practico2c.ipynb
+    - title: Redes neuronales
+      children:
+        - file: S4-redes-neuronales.md
+        - file: notebooks/S4_Cuaderno4.ipynb
+        - file: notebooks/S4_Practico3.ipynb
+    - title: Aprendizaje supervisado
+      children:
+        - file: notebooks/S5_Cuaderno5.ipynb
+        - file: notebooks/S5_Practico4.ipynb
+    - title: Redes biológicas
+      children:
+        - file: notebooks/S7_Cuaderno6.ipynb
+    - title: Aprendizaje por refuerzo
+      children:
+        - file: S8-aprendizaje-refuerzo.md
+        - file: notebooks/S8_Practico5.ipynb
+    - title: Campos receptivos
+      children:
+        - file: S9-campos-receptivos.md
+        - file: notebooks/S9_Practico6.ipynb
+    - title: Control motor
+      children:
+        - file: S10-control-motor.md
+        - file: notebooks/S10_Practico7.ipynb
+    - title: Oscilaciones
+      children:
+        - file: S11-oscilaciones.md
+        - file: notebooks/S11_Cuaderno7.ipynb
+        - file: notebooks/S11_Practico8.ipynb
+    - title: Atención
+      children:
+        - file: notebooks/S12_Practico9.ipynb
+    - title: Cognición numérica
+      children:
+        - file: notebooks/S13_Practico10.ipynb
+    - title: Navegación
+      children:
+        - file: notebooks/S14_Practico11.ipynb
+site:
+  options:
+    logo: logo.png
+    folders: true
+  template: book-theme
