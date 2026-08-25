@@ -4,6 +4,8 @@ project:
   authors:
     - name: Maestría en Ciencias Cognitivas
   github: MaestriaCienciasCognitivas/ncc
+  plugins:
+    - plugins/colab.mjs
   exports:
     - format: pdf
       template: plain_latex_book
