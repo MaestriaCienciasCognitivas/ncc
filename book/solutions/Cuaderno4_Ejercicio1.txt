@@ -1,0 +1,3 @@
+1. Las regiones cercanas en el espacio tienden a tener intensidades similares dentro del mismo frame: si un parche es claro, sus vecinos inmediatos también tienden a serlo. Las regiones lejanas no muestran esa relación.
+
+2. Frames consecutivos se parecen mucho entre sí: la misma región mantiene valores similares de un frame al siguiente. Frames muy separados en el tiempo son estadísticamente independientes.
