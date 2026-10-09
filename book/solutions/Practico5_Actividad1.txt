@@ -1,0 +1,9 @@
+1. Este (2), porque tiene el Q-value más alto. El agente siempre elige el máximo (argmax) cuando esta explotando.
+
+2. Ir al este hasta la columna 4 y desde ahí bajar hasta B. Sí coincide: el primer paso es este.
+
+3. Hay una pared entre las columnas 3 y 4 en las dos últimas filas. Si el taxi baja por la columna 3 queda frente a esa pared y tiene que subir de nuevo para rodearla, así que pierde pasos. El agente aprendió que sur lleva a un camino más largo.
+
+4. En este estado son acciones ilegales: el taxi no está en B ni lleva pasajero. Cada una da -10 de inmediato, que es mucho peor que los -1 de un movimiento.
+
+5. Los números cambian bastante entre entrenamientos, pero la acción elegida casi siempre es la misma.
