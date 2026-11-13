@@ -18,7 +18,6 @@ project:
         - file: notebooks/S1_Cuaderno2.ipynb
     - title: Modelos de neuronas
       children:
-        - file: S2-modelos-neuronas.md
         - file: notebooks/S2_Cuaderno3.ipynb
         - file: notebooks/S2_Practico1.ipynb
         - file: notebooks/S3_Practico2a.ipynb
@@ -26,7 +25,6 @@ project:
         - file: notebooks/S3_Practico2c.ipynb
     - title: Redes neuronales
       children:
-        - file: S4-redes-neuronales.md
         - file: notebooks/S4_Cuaderno4.ipynb
         - file: notebooks/S4_Practico3.ipynb
     - title: Aprendizaje supervisado
@@ -38,19 +36,15 @@ project:
         - file: notebooks/S7_Cuaderno6.ipynb
     - title: Aprendizaje por refuerzo
       children:
-        - file: S8-aprendizaje-refuerzo.md
         - file: notebooks/S8_Practico5.ipynb
     - title: Campos receptivos
       children:
-        - file: S9-campos-receptivos.md
         - file: notebooks/S9_Practico6.ipynb
     - title: Control motor
       children:
-        - file: S10-control-motor.md
         - file: notebooks/S10_Practico7.ipynb
     - title: Oscilaciones
       children:
-        - file: S11-oscilaciones.md
         - file: notebooks/S11_Cuaderno7.ipynb
         - file: notebooks/S11_Practico8.ipynb
     - title: Atención
