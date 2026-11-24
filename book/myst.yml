@@ -56,6 +56,9 @@ project:
     - title: Navegación
       children:
         - file: notebooks/S14_Practico11.ipynb
+    - title: Lenguaje
+      children:
+        - file: notebooks/S15_Practico12.ipynb
 site:
   options:
     logo: logo.png
