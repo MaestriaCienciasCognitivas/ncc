@@ -7,6 +7,9 @@ imageio
 torch
 torchvision
 scikit-learn
+nilearn
+remotezip
+huggingface_hub
 gymnasium
 notebook
 ipywidgets
